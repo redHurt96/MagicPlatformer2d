@@ -6,6 +6,7 @@ namespace RH.Game.UserInput
     public class KeyboardInput : MonoBehaviour
     {
         public static event Action<Vector2> OnInput;
+        public static float Direction;
 
         private void Awake()
         {
@@ -16,6 +17,7 @@ namespace RH.Game.UserInput
         private void Update()
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
+            Direction = horizontal;
             OnInput?.Invoke(new Vector2(horizontal, 0f));
         }
     }
