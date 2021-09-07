@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using RH.Game.Settings;
 using RH.Game.UserInput;
 
 namespace RH.Game.Player
@@ -8,8 +9,8 @@ namespace RH.Game.Player
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private SurfaceSlider _surfaceSlider;
         [SerializeField] private CollisionDetector _collisionDetector;
-        [SerializeField] private float _speed;
-
+        
+        private float _speed => PrototypeSettings.Instance.PlayerSpeed;
         private Vector2 _direction;
 
         private void Start()

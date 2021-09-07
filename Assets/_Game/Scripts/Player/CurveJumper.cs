@@ -1,17 +1,21 @@
 using System.Collections;
+using RH.Game.Settings;
 using RH.Game.UserInput;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RH.Game.Player
 {
     public class CurveJumper : MonoBehaviour
     {
         [SerializeField] private CollisionDetector _collisionDetector;
-        [SerializeField] private AnimationCurve _curve;
-        [SerializeField] private float _height;
-        [SerializeField] private float _lenght;
-        [SerializeField] private float _time;
 
+        private PrototypeSettings _settings => PrototypeSettings.Instance;
+        private AnimationCurve _curve => _settings.JumpCurve;
+        private float _height => _settings.JumpHeight;
+        private float _lenght => _settings.JumpLenght;
+        private float _airControlPercent => _settings.AirControlPercent;
+        private float _time => _settings.JumpTime;
         private bool _isGrounded => _collisionDetector.IsCollide;
 
         private void Update()
@@ -30,17 +34,11 @@ namespace RH.Game.Player
             float jumpTime = 0f;
             Vector2 startPoint = transform.position;
             bool hasStartCollisions = true;
+            float startDirection = KeyboardInput.Direction;
 
             while (inAir())
             {
-                var progress = jumpTime / _time;
-                var curvePoint = _curve.Evaluate(progress);
-
-                var height = curvePoint * _height;
-                var lenghtOffset = _lenght * KeyboardInput.Direction * Time.deltaTime;
-                var newPosition = new Vector2(transform.position.x + lenghtOffset, startPoint.y + height);
-                transform.position = newPosition;
-
+                transform.position = new Vector2(transform.position.x + CalculateHorizontalOffset(), CalculateVerticalOffset());
                 jumpTime += Time.deltaTime;
              
                 if (!_collisionDetector.IsCollide && hasStartCollisions)
@@ -51,6 +49,17 @@ namespace RH.Game.Player
             
             yield break;
 
+            float CalculateHorizontalOffset()
+            {
+                var inputCoefficient = Mathf.Lerp(startDirection, KeyboardInput.Direction, _airControlPercent);
+                return _lenght * Time.deltaTime * inputCoefficient;
+            }
+            float CalculateVerticalOffset()
+            {                
+                var curvePoint = _curve.Evaluate(jumpTime / _time);
+                var height = curvePoint * _height;
+                return startPoint.y + height;
+            }
             bool inAir() => !_isGrounded || (_isGrounded && hasStartCollisions);
         }
     }

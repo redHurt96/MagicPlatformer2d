@@ -9,7 +9,7 @@ namespace RH.Game.Player
     {
         public bool IsCollide => _colliders.Count > 0;
         
-        private List<Collider2D> _colliders = new List<Collider2D>(); 
+        private readonly List<Collider2D> _colliders = new List<Collider2D>(); 
         
         private void OnCollisionEnter2D(Collision2D other)
         {
