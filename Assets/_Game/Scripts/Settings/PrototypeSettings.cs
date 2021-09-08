@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using RH.Utilities.Attributes;
 
 namespace RH.Game.Settings
 {
@@ -14,6 +13,8 @@ namespace RH.Game.Settings
         public float JumpLenght;
         [Range(0,1)] public float AirControlPercent;
         public float JumpTime;
+        public float FallSideAcceleration;
+        [ReadOnly] public float BodyFriction = 1000;
         
         public static PrototypeSettings Instance { get; private set; }
 

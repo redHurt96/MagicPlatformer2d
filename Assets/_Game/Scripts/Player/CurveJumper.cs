@@ -1,14 +1,15 @@
 using System.Collections;
+using UnityEngine;
 using RH.Game.Settings;
 using RH.Game.UserInput;
-using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace RH.Game.Player
 {
     public class CurveJumper : MonoBehaviour
     {
         [SerializeField] private CollisionDetector _collisionDetector;
+        
+        public bool IsJumping { get; private set; }
 
         private PrototypeSettings _settings => PrototypeSettings.Instance;
         private AnimationCurve _curve => _settings.JumpCurve;
@@ -31,6 +32,7 @@ namespace RH.Game.Player
 
         private IEnumerator PerformJump()
         {
+            IsJumping = true;
             float jumpTime = 0f;
             Vector2 startPoint = transform.position;
             bool hasStartCollisions = true;
@@ -47,6 +49,7 @@ namespace RH.Game.Player
                 yield return null;
             }
             
+            IsJumping = false;
             yield break;
 
             float CalculateHorizontalOffset()

@@ -35,7 +35,7 @@ namespace RH.Game.Player
         
         private void Move()
         {
-            if (_direction == Vector2.zero || !_collisionDetector.IsCollide)
+            if (_direction == Vector2.zero || !_collisionDetector.IsGrounded)
                 return;
 
             Vector2 directionAlongSurface = _surfaceSlider.Project(_direction.normalized);

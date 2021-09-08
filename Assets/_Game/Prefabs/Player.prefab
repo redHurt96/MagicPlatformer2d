@@ -11,11 +11,13 @@ GameObject:
   - component: {fileID: 9101359769824934927}
   - component: {fileID: 9101359769824934926}
   - component: {fileID: 9101359769824934924}
+  - component: {fileID: 9101359770257098124}
   - component: {fileID: 9101359769824934925}
   - component: {fileID: 9101359769824934913}
   - component: {fileID: 9101359769824934914}
   - component: {fileID: 9101359769824934915}
   - component: {fileID: 9101359769824934912}
+  - component: {fileID: 3176777543746140830}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -106,6 +108,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!58 &9101359770257098124
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101359769824934921}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.55}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!50 &9101359769824934925
 Rigidbody2D:
   serializedVersion: 4
@@ -139,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a7b5f7085ddd94589f3233880c9a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 0}
 --- !u!114 &9101359769824934914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +185,6 @@ MonoBehaviour:
   _rigidbody: {fileID: 9101359769824934925}
   _surfaceSlider: {fileID: 9101359769824934914}
   _collisionDetector: {fileID: 9101359769824934913}
-  _speed: 10
 --- !u!114 &9101359769824934912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,31 +198,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionDetector: {fileID: 9101359769824934913}
-  _curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1.8166084
-      value: -4.305488
-      inSlope: -8.11616
-      outSlope: -8.11616
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.051856786
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _height: 3
-  _lenght: 3
-  _airControlPercent: 0
-  _time: 1
+--- !u!114 &3176777543746140830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101359769824934921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b72894a1e148b419651705d7903798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumper: {fileID: 9101359769824934912}
+  _detector: {fileID: 9101359769824934913}
