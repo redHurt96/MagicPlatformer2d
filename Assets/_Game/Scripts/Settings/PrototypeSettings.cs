@@ -7,13 +7,16 @@ namespace RH.Game.Settings
     public class PrototypeSettings : ScriptableObject
     {
         [Header("Player settings")]
-        public float PlayerSpeed;
+        [SerializeField] private float _playerSpeed;
+        [HideInInspector] public float PlayerSpeed => _playerSpeed * 2f;
         public AnimationCurve JumpCurve;
         public float JumpHeight;
         public float JumpLenght;
         [Range(0,1)] public float AirControlPercent;
+        [Range(0,1)] public float FallAirControlPercent;
         public float JumpTime;
-        public float FallSideAcceleration;
+        
+        [Header("Dev stuff")]
         [ReadOnly] public float BodyFriction = 1000;
         
         public static PrototypeSettings Instance { get; private set; }
@@ -22,6 +25,5 @@ namespace RH.Game.Settings
         {
             Instance = this;
         }
-        
     }
 }

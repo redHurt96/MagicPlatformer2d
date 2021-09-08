@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7043a2cba720ced40bdadc722bdd41bd, type: 3}
   m_Name: DefaultPrototypeSettings
   m_EditorClassIdentifier: 
-  PlayerSpeed: 10
+  _playerSpeed: 5
   JumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -40,5 +40,7 @@ MonoBehaviour:
   JumpHeight: 10
   JumpLenght: 5
   AirControlPercent: 1
+  FallAirControlPercent: 1
   JumpTime: 1
   FallSideAcceleration: 20
+  BodyFriction: 1000

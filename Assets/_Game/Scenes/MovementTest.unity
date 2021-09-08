@@ -811,10 +811,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3176777543746140830, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
-      propertyPath: _rigidbody
-      value: 
-      objectReference: {fileID: 9101359770257098129}
     - target: {fileID: 9101359769824934921, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
       propertyPath: m_Name
       value: Player
@@ -829,7 +825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9101359769824934927, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.63
+      value: -3.04
       objectReference: {fileID: 0}
     - target: {fileID: 9101359769824934927, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
       propertyPath: m_LocalPosition.z
@@ -863,18 +859,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9101359770257098124, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
-      propertyPath: m_Radius
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 9101359770257098124, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
---- !u!50 &9101359770257098129 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 9101359769824934925, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
-  m_PrefabInstance: {fileID: 9101359770257098122}
-  m_PrefabAsset: {fileID: 0}

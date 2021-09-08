@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using RH.Game.Settings;
 using RH.Game.UserInput;
@@ -13,8 +14,7 @@ namespace RH.Game.Player
 
         private bool _isFall => !_jumper.IsJumping && !_detector.IsGrounded;
         private PrototypeSettings _settings => PrototypeSettings.Instance;
-        private float _direction => KeyboardInput.Direction * _settings.AirControlPercent * _settings.FallSideAcceleration;
-        private float _playerSpeed => _settings.PlayerSpeed;
+        private float _direction => KeyboardInput.Direction * _settings.PlayerSpeed * _settings.FallAirControlPercent;
         private float _defaultMaterialFriction => _settings.BodyFriction;
         private PhysicsMaterial2D _material => _rigidbody.sharedMaterial;
 
@@ -28,31 +28,24 @@ namespace RH.Game.Player
                 _material.friction = _defaultMaterialFriction;
         }
 
+        private void FixedUpdate()
+        {
+            if (_isPerformFalling && !_detector.IsCollide)
+                _rigidbody.velocity = new Vector2(_direction, _rigidbody.velocity.y);
+        }
+
         private IEnumerator PerformFall()
         {
             _isPerformFalling = true;
             _material.friction = 0f;
 
-            while (_isFall)
-            {
-                if (!_detector.IsCollide)
-                    MovePlayer();
-                
-                yield return null;
-            }
+            yield return new WaitWhile(() => _isFall);
 
             _material.friction = _defaultMaterialFriction;
             _isPerformFalling = false;
-            
-            yield break;
-        }
+            _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
 
-        private void MovePlayer()
-        {
-            _rigidbody.AddForce(new Vector2(_direction, 0f));
-            
-            var velocity = _rigidbody.velocity; 
-            _rigidbody.velocity = new Vector2(Mathf.Clamp(velocity.x, 0f, _playerSpeed), velocity.y);
+            yield break;
         }
     }
 }
