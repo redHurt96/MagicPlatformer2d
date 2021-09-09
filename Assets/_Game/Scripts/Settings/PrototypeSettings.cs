@@ -18,6 +18,7 @@ namespace RH.Game.Settings
         
         [Header("Dev stuff")]
         [ReadOnly] public float BodyFriction = 1000;
+        public bool EnableInputLog;
         
         public static PrototypeSettings Instance { get; private set; }
 

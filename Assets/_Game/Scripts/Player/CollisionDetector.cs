@@ -5,8 +5,6 @@ namespace RH.Game.Player
 {
     public class CollisionDetector : MonoBehaviour
     {
-        [SerializeField] private Collider2D _collider;
-        
         public bool IsCollide => _otherColliders.Count > 0;
         public bool IsGrounded => _groundColliders.Count > 0;
 

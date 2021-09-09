@@ -9,6 +9,7 @@ namespace RH.Game.Settings
         private void Awake()
         {
             _settings.Init();
+            Destroy(gameObject);
         }
     }
 }
