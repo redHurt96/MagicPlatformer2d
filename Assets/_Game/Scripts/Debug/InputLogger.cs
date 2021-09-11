@@ -1,7 +1,8 @@
-using RH.Game.Settings;
 using UnityEngine;
+using RH.Game.InputTracking;
+using RH.Game.Settings;
 
-namespace RH.Game.InputTracking.Debugging
+namespace RH.Game.Debugging
 {
     public class InputLogger : MonoBehaviour
     {
