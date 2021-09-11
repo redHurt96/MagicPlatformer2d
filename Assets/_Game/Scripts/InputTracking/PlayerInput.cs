@@ -1,4 +1,5 @@
 using System;
+using Between;
 using UnityEngine;
 
 namespace RH.Game.InputTracking
@@ -9,12 +10,14 @@ namespace RH.Game.InputTracking
         public static event Action Dragged;
         public static event Action Released;
 
+        public static Vector2 ScreenPosition => _mousePosition;
+        public static Vector3 WorldPosition => GameCamera.ScreenToWorldPoint(ScreenPosition);
+        private static Vector2 _mousePosition => Input.mousePosition;
+        
         private InputState _state = InputState.None;
         private Vector2 _pressPosition;
         private Vector2 _previousPosition;
 
-        private Vector2 _mousePosition => Input.mousePosition;
-        
         private void Update()
         {
             if (Input.GetMouseButtonDown(0) && _state == InputState.None)

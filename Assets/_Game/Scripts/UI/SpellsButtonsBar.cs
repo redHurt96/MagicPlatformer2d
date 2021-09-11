@@ -22,7 +22,7 @@ namespace RH.Game.UI
 
         private void Select(int spellNumber)
         {
-            SpellsCollection.Instance.SelectSpell(spellNumber);
+            SpellsCollection.Instance.SelectSpell((SpellType) spellNumber);
         }
 
         private void AttachListeners()
@@ -37,10 +37,7 @@ namespace RH.Game.UI
         private void DetachListeners()
         {
             for (int i = 0; i < _buttons.Length; i++)
-            {
-                var spellNumber = i;
                 _buttons[i].onClick.RemoveAllListeners();
-            }
         }
     }
 }
