@@ -11,7 +11,7 @@ namespace RH.Game.Settings
 
         [Header("Player settings")]
         [SerializeField] private float _playerSpeed;
-        [HideInInspector] public float PlayerSpeed => _playerSpeed * 2f;
+        public float PlayerSpeed => _playerSpeed * 2f;
         public AnimationCurve JumpCurve;
         public float JumpHeight;
         public float JumpLenght;
@@ -28,7 +28,7 @@ namespace RH.Game.Settings
         public float ShieldLifeTime;
         
         [Header("Dev stuff")]
-        [ReadOnly] public float BodyFriction = 1000;
+        public float BodyFriction = 1000;
         public bool EnableInputLog;
         
         public static PrototypeSettings Instance { get; private set; }
