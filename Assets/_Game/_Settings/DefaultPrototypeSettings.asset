@@ -19,12 +19,21 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 4.468354
+      outSlope: 4.468354
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.28171796
+    - serializedVersion: 3
+      time: 0.50457805
+      value: 0.950798
+      inSlope: 0.050529275
+      outSlope: 0.050529275
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.19208616
     - serializedVersion: 3
       time: 1.8166084
       value: -4.305488
@@ -37,10 +46,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  JumpHeight: 10
+  JumpHeight: 5
   JumpLenght: 5
   AirControlPercent: 1
   FallAirControlPercent: 1
   JumpTime: 1
+  ProjectileData:
+    Speed: 10
+    Damage: 3
+    Prefab: {fileID: 8068662593764052154, guid: 319a83d3fed558e42a55942bb737a7e4, type: 3}
   BodyFriction: 1000
   EnableInputLog: 0

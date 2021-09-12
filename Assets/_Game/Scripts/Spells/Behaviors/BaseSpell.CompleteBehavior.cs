@@ -6,7 +6,7 @@ namespace RH.Game.Spells
     {
         public abstract class CompleteBehavior
         {
-            public bool IsComplete { get; protected set; }
+            public abstract bool IsComplete { get; protected set; }
             
             public abstract void Apply();
         }

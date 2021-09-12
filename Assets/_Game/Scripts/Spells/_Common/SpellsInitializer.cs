@@ -7,11 +7,19 @@ namespace RH.Game.Spells
     {
         private InputTracker _inputTracker;
         
-        private void Awake()
+        private void Start()
         {
-            new SpellsCollection();
+            InitSpells();
+            
             _inputTracker = new InputTracker();
+            _inputTracker.Init();
             _inputTracker.DrawComplete += CastSpell;
+        }
+
+        private void InitSpells()
+        {
+            var spells = new SpellsCollection();
+            spells.AddSpell(SpellType.Fireball, new Fireball(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
         }
 
         private void CastSpell(List<Vector3> points)
@@ -21,9 +29,10 @@ namespace RH.Game.Spells
 
         private void OnDestroy()
         {
-            _inputTracker.DrawComplete += CastSpell;
-            SpellsCollection.DestroyInstance();
+            _inputTracker.DrawComplete -= CastSpell;
+            _inputTracker.Dispose();
             _inputTracker = null;
+            SpellsCollection.DestroyInstance();
         }
     }
 }

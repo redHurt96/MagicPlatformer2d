@@ -8,17 +8,15 @@ namespace RH.Game.Spells
         protected readonly CastCondition castCondition;
         protected readonly CompleteBehavior completeBehavior;
 
-        private bool _canCast => castCondition.CanCast && completeBehavior.IsComplete;
-
         public BaseSpell(CastCondition condition, CompleteBehavior behavior)
         {
             castCondition = condition;
             completeBehavior = behavior;
         }
-        
+
         public void TryCast(List<Vector3> points)
         {
-            if (!_canCast)
+            if (!CanCast(points))
                 return;
             
             Cast(points);
@@ -26,5 +24,7 @@ namespace RH.Game.Spells
         }
 
         protected abstract void Cast(List<Vector3> points);
+        
+        private bool CanCast(List<Vector3> points) => castCondition.CanCast(points) && completeBehavior.IsComplete;
     }
 }
