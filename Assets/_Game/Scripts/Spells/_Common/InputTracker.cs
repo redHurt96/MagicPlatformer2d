@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using RH.Game.InputTracking;
+using RH.Game.Input.Tracking;
 
 namespace RH.Game.Spells
 {
@@ -13,15 +13,15 @@ namespace RH.Game.Spells
 
         public void Init()
         {
-            PlayerInput.Pressed += StartTrack;
-            PlayerInput.Dragged += Track;
-            PlayerInput.Released += FinishTrack;
+            TouchInput.Pressed += StartTrack;
+            TouchInput.Dragged += Track;
+            TouchInput.Released += FinishTrack;
         }
 
         public void Dispose()
         {
-            PlayerInput.Pressed -= StartTrack;
-            PlayerInput.Released -= FinishTrack;
+            TouchInput.Pressed -= StartTrack;
+            TouchInput.Released -= FinishTrack;
         }
 
         private void StartTrack()
@@ -43,7 +43,7 @@ namespace RH.Game.Spells
 
         private void AddPoint()
         {
-            _drawPoints.Add(PlayerInput.WorldPosition);            
+            _drawPoints.Add(TouchInput.WorldPosition);            
         }
     }
 }

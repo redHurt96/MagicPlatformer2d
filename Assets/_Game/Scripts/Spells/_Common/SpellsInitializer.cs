@@ -20,6 +20,7 @@ namespace RH.Game.Spells
         {
             var spells = new SpellsCollection();
             spells.AddSpell(SpellType.Fireball, new Fireball(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
+            spells.AddSpell(SpellType.Shield, new ShieldSpell(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
         }
 
         private void CastSpell(List<Vector3> points)

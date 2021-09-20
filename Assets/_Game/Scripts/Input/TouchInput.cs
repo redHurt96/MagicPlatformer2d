@@ -2,9 +2,9 @@ using System;
 using Between;
 using UnityEngine;
 
-namespace RH.Game.InputTracking
+namespace RH.Game.Input.Tracking
 {
-    public class PlayerInput : MonoBehaviour
+    public class TouchInput : MonoBehaviour
     {
         public static event Action Pressed;
         public static event Action Dragged;
@@ -12,7 +12,7 @@ namespace RH.Game.InputTracking
 
         public static Vector2 ScreenPosition => _mousePosition;
         public static Vector3 WorldPosition => GameCamera.ScreenToWorldPoint(ScreenPosition);
-        private static Vector2 _mousePosition => Input.mousePosition;
+        private static Vector2 _mousePosition => UnityEngine.Input.mousePosition;
         
         private InputState _state = InputState.None;
         private Vector2 _pressPosition;
@@ -20,17 +20,17 @@ namespace RH.Game.InputTracking
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && _state == InputState.None)
+            if (UnityEngine.Input.GetMouseButtonDown(0) && _state == InputState.None)
                 PerformPress();
             else if (IsStartDrag())
                 PerformStartDrag();
             else if (IsDrag())
                 PerformDrag();
-            else if (_state != InputState.None && !Input.GetMouseButton(0))
+            else if (_state != InputState.None && !UnityEngine.Input.GetMouseButton(0))
                 PerformRelease();
 
-            bool IsStartDrag() => Input.GetMouseButton(0) && _state == InputState.Press && _mousePosition != _pressPosition;
-            bool IsDrag() => Input.GetMouseButton(0) && _state == InputState.Drag && _mousePosition != _previousPosition;
+            bool IsStartDrag() => UnityEngine.Input.GetMouseButton(0) && _state == InputState.Press && _mousePosition != _pressPosition;
+            bool IsDrag() => UnityEngine.Input.GetMouseButton(0) && _state == InputState.Drag && _mousePosition != _previousPosition;
         }
 
         private void PerformPress()

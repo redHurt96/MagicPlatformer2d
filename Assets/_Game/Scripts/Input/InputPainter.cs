@@ -1,8 +1,8 @@
+using RH.Game.Input.Tracking;
 using UnityEngine;
-using RH.Game.InputTracking;
 using Sirenix.OdinInspector;
 
-namespace RH.Game.InputPainting
+namespace RH.Game.Input
 {
     public class InputPainter : MonoBehaviour
     {
@@ -12,16 +12,16 @@ namespace RH.Game.InputPainting
 
         private void Start()
         {
-            PlayerInput.Pressed += CreatePainter;
-            PlayerInput.Dragged += MovePainter;
-            PlayerInput.Released += DestroyPainter;
+            TouchInput.Pressed += CreatePainter;
+            TouchInput.Dragged += MovePainter;
+            TouchInput.Released += DestroyPainter;
         }
 
         private void OnDestroy()
         {
-            PlayerInput.Pressed -= CreatePainter;
-            PlayerInput.Dragged -= MovePainter;
-            PlayerInput.Released -= DestroyPainter;
+            TouchInput.Pressed -= CreatePainter;
+            TouchInput.Dragged -= MovePainter;
+            TouchInput.Released -= DestroyPainter;
         }
 
         private void CreatePainter()
@@ -29,13 +29,13 @@ namespace RH.Game.InputPainting
             if (_currentPainter != null)
                 Destroy(_currentPainter.gameObject);
 
-            _currentPainter = Instantiate(_prefab, PlayerInput.WorldPosition, Quaternion.identity);
+            _currentPainter = Instantiate(_prefab, TouchInput.WorldPosition, Quaternion.identity);
         }
 
         private void MovePainter()
         {
             if (_currentPainter != null)
-                _currentPainter.transform.position = PlayerInput.WorldPosition;
+                _currentPainter.transform.position = TouchInput.WorldPosition;
         }
 
         private void DestroyPainter()

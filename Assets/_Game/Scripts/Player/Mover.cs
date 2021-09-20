@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using RH.Game.Settings;
-using RH.Game.UserInput;
+using RH.Game.Input;
+using Sirenix.Utilities;
 
 namespace RH.Game.Player
 {
-    public class Movement : MonoBehaviour
+    public class Mover : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private SurfaceSlider _surfaceSlider;
@@ -40,7 +41,7 @@ namespace RH.Game.Player
 
             Vector2 directionAlongSurface = _surfaceSlider.Project(_direction.normalized);
             Vector2 offset = directionAlongSurface * (_speed * Time.deltaTime);
-            
+
             _rigidbody.MovePosition(_rigidbody.position + offset);
         }
     }

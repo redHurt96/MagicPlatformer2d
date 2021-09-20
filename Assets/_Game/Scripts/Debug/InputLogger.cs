@@ -1,6 +1,6 @@
 using UnityEngine;
-using RH.Game.InputTracking;
 using RH.Game.Settings;
+using RH.Game.Input.Tracking;
 
 namespace RH.Game.Debugging
 {
@@ -14,17 +14,17 @@ namespace RH.Game.Debugging
             }
             else
             {
-                PlayerInput.Pressed += PrintPress;
-                PlayerInput.Dragged += PrintDrag;
-                PlayerInput.Released += PrintRelease;
+                TouchInput.Pressed += PrintPress;
+                TouchInput.Dragged += PrintDrag;
+                TouchInput.Released += PrintRelease;
             }
         }
 
         private void OnDestroy()
         {
-            PlayerInput.Pressed -= PrintPress;
-            PlayerInput.Dragged -= PrintDrag;
-            PlayerInput.Released -= PrintRelease;
+            TouchInput.Pressed -= PrintPress;
+            TouchInput.Dragged -= PrintDrag;
+            TouchInput.Released -= PrintRelease;
         }
 
         private void PrintPress() => Debug.Log("Press");

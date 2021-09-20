@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RH.Game.Settings;
 using UnityEngine;
 
 namespace RH.Game.Player
@@ -11,9 +12,12 @@ namespace RH.Game.Player
         private readonly List<Collider2D> _otherColliders = new List<Collider2D>();
         private readonly List<Collider2D> _groundColliders = new List<Collider2D>();
 
+        [SerializeField] private Rigidbody2D _rigidbody;
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             _otherColliders.Add(other.collider);
+            _rigidbody.sharedMaterial.friction = IsGrounded ? PrototypeSettings.Instance.BodyFriction : 0f;
         }
 
         private void OnCollisionExit2D(Collision2D other)

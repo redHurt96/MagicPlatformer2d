@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace RH.Game.UserInput
+namespace RH.Game.Input
 {
     public class KeyboardInput : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace RH.Game.UserInput
 
         private void Update()
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
+            float horizontal = UnityEngine.Input.GetAxisRaw("Horizontal");
             Direction = horizontal;
             OnInput?.Invoke(new Vector2(horizontal, 0f));
         }

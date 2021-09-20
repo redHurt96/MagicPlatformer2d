@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using RH.Game.Settings;
-using RH.Game.UserInput;
+using RH.Game.Input;
 
 namespace RH.Game.Player
 {
     public class CurveJumper : MonoBehaviour
     {
         [SerializeField] private CollisionDetector _collisionDetector;
+        [SerializeField] private Rigidbody2D _rigidbody;
         
         public bool IsJumping { get; private set; }
 
@@ -21,7 +22,7 @@ namespace RH.Game.Player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space) && _isGrounded)
                 Jump();
         }
 
@@ -48,7 +49,8 @@ namespace RH.Game.Player
                 
                 yield return null;
             }
-            
+
+            _rigidbody.velocity = Vector2.zero;
             IsJumping = false;
             yield break;
 

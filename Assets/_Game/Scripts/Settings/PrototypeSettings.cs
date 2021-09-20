@@ -1,6 +1,8 @@
+using Between.SpellsEffects.ShieldSpell;
 using RH.Game.Projectiles;
 using UnityEngine;
-using RH.Utilities.Attributes;
+using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 
 namespace RH.Game.Settings
 {
@@ -26,10 +28,13 @@ namespace RH.Game.Settings
 
         [Header("Shield spell")] 
         public float ShieldLifeTime;
+        [AssetsOnly] public Shield ShieldPrefab;
+        public float ShieldsLenght;
         
         [Header("Dev stuff")]
         public float BodyFriction = 1000;
         public bool EnableInputLog;
+        public bool EnableJumpGizmos;
         
         public static PrototypeSettings Instance { get; private set; }
 
