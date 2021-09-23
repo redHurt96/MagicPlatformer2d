@@ -5,10 +5,9 @@ using RH.Game.Input;
 
 namespace RH.Game.Player
 {
-    public class CurveJumper : MonoBehaviour
+    public class Jumper : MonoBehaviour
     {
         [SerializeField] private CollisionDetector _collisionDetector;
-        [SerializeField] private Rigidbody2D _rigidbody;
         
         public bool IsJumping { get; private set; }
 
@@ -35,37 +34,43 @@ namespace RH.Game.Player
         {
             IsJumping = true;
             float jumpTime = 0f;
-            Vector2 startPoint = transform.position;
             bool hasStartCollisions = true;
             float startDirection = KeyboardInput.Direction;
+            Vector2 startPoint = transform.position;
 
             while (inAir())
             {
-                transform.position = new Vector2(transform.position.x + CalculateHorizontalOffset(), CalculateVerticalOffset());
+                transform.position = new Vector2(CalculateHorizontalPosition(), CalculateVerticalPosition());
                 jumpTime += Time.deltaTime;
-             
-                if (!_collisionDetector.IsCollide && hasStartCollisions)
-                    hasStartCollisions = false;
+
+                UpdateCollisionsTrigger();
                 
                 yield return null;
             }
 
-            _rigidbody.velocity = Vector2.zero;
             IsJumping = false;
             yield break;
 
-            float CalculateHorizontalOffset()
+            float CalculateHorizontalPosition()
             {
                 var inputCoefficient = Mathf.Lerp(startDirection, KeyboardInput.Direction, _airControlPercent);
-                return _lenght * Time.deltaTime * inputCoefficient;
+                return transform.position.x + _lenght * Time.deltaTime * inputCoefficient;
             }
-            float CalculateVerticalOffset()
+            
+            float CalculateVerticalPosition()
             {                
                 var curvePoint = _curve.Evaluate(jumpTime / _time);
                 var height = curvePoint * _height;
                 return startPoint.y + height;
             }
+    
             bool inAir() => !_isGrounded || (_isGrounded && hasStartCollisions);
+
+            void UpdateCollisionsTrigger()
+            {
+                if (!_collisionDetector.IsCollide && hasStartCollisions)
+                    hasStartCollisions = false;
+            }
         }
     }
 }

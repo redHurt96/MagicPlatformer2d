@@ -7,7 +7,7 @@ namespace RH.Game.Input
     {
         public static event Action<Vector2> OnInput;
         public static float Direction;
-        public static bool IsMoving => Mathf.Approximately(Direction, 0f);
+        public static bool IsMoving => !Mathf.Approximately(Direction, 0f);
         public static bool JumpButtonPressed => UnityEngine.Input.GetKeyDown(KeyCode.Space);
 
         private void Awake()
@@ -20,7 +20,9 @@ namespace RH.Game.Input
         {
             float horizontal = UnityEngine.Input.GetAxisRaw("Horizontal");
             Direction = horizontal;
-            OnInput?.Invoke(new Vector2(horizontal, 0f));
+            
+            if (IsMoving)
+                OnInput?.Invoke(new Vector2(horizontal, 0f));
         }
     }
 }

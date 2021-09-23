@@ -13,7 +13,7 @@ public class JumpCurveGizmos : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!Application.isPlaying || !PrototypeSettings.Instance.EnableJumpGizmos)
+        if (!Application.isPlaying || !PrototypeSettings.Instance.EnableMovementGizmos)
             return;
 
         Gizmos.color = Color.red;

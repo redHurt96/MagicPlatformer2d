@@ -1,43 +1,45 @@
-using System;
 using System.Collections;
+using UnityEngine;
 using RH.Game.Settings;
 using RH.Game.Input;
-using UnityEngine;
 
 namespace RH.Game.Player
 {
-    public class FallPerformer : MonoBehaviour
+    public class Faller : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private CurveJumper _jumper;
+        [SerializeField] private Jumper _jumper;
         [SerializeField] private CollisionDetector _detector;
 
         private bool _isFall => !_jumper.IsJumping && !_detector.IsGrounded;
         private PrototypeSettings _settings => PrototypeSettings.Instance;
         private float _direction => KeyboardInput.Direction * _settings.PlayerSpeed * _settings.FallAirControlPercent;
-        private float _defaultMaterialFriction => _settings.BodyFriction;
-        private bool _isPerformFalling;
+        private bool IsPerformFalling => _fallCoroutine != null;
+
+        private Coroutine _fallCoroutine;
 
         private void Update()
         {
-            if (_isFall && !_isPerformFalling)
-                StartCoroutine(PerformFall());
+            UpdateFallingVelocity();
+            TryStartFalling();
         }
 
-        private void FixedUpdate()
+        private void TryStartFalling()
         {
-            if (_isPerformFalling && !_detector.IsCollide)
-                _rigidbody.velocity = new Vector2(_direction, _rigidbody.velocity.y);
+            if (_isFall && !IsPerformFalling)
+                _fallCoroutine = StartCoroutine(PerformFall());
         }
 
         private IEnumerator PerformFall()
         {
-            _isPerformFalling = true;
-
             yield return new WaitWhile(() => _isFall);
+            _fallCoroutine = null;
+        }
 
-            _isPerformFalling = false;
-            _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
+        private void UpdateFallingVelocity()
+        {
+            if (IsPerformFalling && !_detector.IsCollide)
+                transform.Translate(new Vector2(_direction, _rigidbody.velocity.y) * Time.deltaTime);
         }
     }
 }

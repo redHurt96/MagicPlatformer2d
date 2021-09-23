@@ -46,7 +46,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  JumpHeight: 5
+  JumpHeight: 7.52
   JumpLenght: 12
   AirControlPercent: 1
   FallAirControlPercent: 1
@@ -61,4 +61,4 @@ MonoBehaviour:
   ShieldsLenght: 8
   BodyFriction: 1000
   EnableInputLog: 0
-  EnableJumpGizmos: 1
+  EnableMovementGizmos: 1

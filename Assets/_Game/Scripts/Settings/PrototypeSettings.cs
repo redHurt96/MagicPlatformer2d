@@ -34,7 +34,7 @@ namespace RH.Game.Settings
         [Header("Dev stuff")]
         public float BodyFriction = 1000;
         public bool EnableInputLog;
-        public bool EnableJumpGizmos;
+        public bool EnableMovementGizmos;
         
         public static PrototypeSettings Instance { get; private set; }
 
