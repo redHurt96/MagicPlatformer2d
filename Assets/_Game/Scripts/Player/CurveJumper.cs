@@ -22,7 +22,7 @@ namespace RH.Game.Player
 
         private void Update()
         {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+            if (KeyboardInput.JumpButtonPressed && _isGrounded)
                 Jump();
         }
 

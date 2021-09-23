@@ -7,6 +7,8 @@ namespace RH.Game.Input
     {
         public static event Action<Vector2> OnInput;
         public static float Direction;
+        public static bool IsMoving => Mathf.Approximately(Direction, 0f);
+        public static bool JumpButtonPressed => UnityEngine.Input.GetKeyDown(KeyCode.Space);
 
         private void Awake()
         {
