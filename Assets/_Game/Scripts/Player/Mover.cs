@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using RH.Game.Settings;
 using RH.Game.Input;
 
