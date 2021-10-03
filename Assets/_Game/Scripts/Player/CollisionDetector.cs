@@ -17,7 +17,7 @@ namespace RH.Game.Player
         private void OnCollisionEnter2D(Collision2D other)
         {
             _otherColliders.Add(other.collider);
-            _rigidbody.sharedMaterial.friction = IsGrounded ? PrototypeSettings.Instance.BodyFriction : 0f;
+            _rigidbody.sharedMaterial.friction = IsGrounded ? StaticData.Instance.BodyFriction : 0f;
         }
 
         private void OnCollisionExit2D(Collision2D other)

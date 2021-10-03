@@ -11,7 +11,7 @@ namespace RH.Game.Player
         [SerializeField] private SurfaceSlider _surfaceSlider;
         [SerializeField] private CollisionDetector _collisionDetector;
         
-        private float _speed => PrototypeSettings.Instance.PlayerSpeed;
+        private float _speed => StaticData.Instance.PlayerSpeed;
         private Vector2 _direction;
 
         private void Start()

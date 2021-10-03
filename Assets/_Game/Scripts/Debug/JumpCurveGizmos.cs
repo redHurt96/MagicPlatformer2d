@@ -13,14 +13,14 @@ public class JumpCurveGizmos : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!Application.isPlaying || !PrototypeSettings.Instance.EnableJumpGizmos)
+        if (!Application.isPlaying || !StaticData.Instance.EnableJumpGizmos)
             return;
 
         Gizmos.color = Color.red;
         var position = transform.position;
 
-        Gizmos.DrawLine(position, position + Vector3.up * PrototypeSettings.Instance.JumpHeight);
-        Gizmos.DrawLine(position, position + Vector3.right * PrototypeSettings.Instance.JumpLenght);
-        Gizmos.DrawLine(position, position + Vector3.left * PrototypeSettings.Instance.JumpLenght);
+        Gizmos.DrawLine(position, position + Vector3.up * StaticData.Instance.JumpHeight);
+        Gizmos.DrawLine(position, position + Vector3.right * StaticData.Instance.JumpLenght);
+        Gizmos.DrawLine(position, position + Vector3.left * StaticData.Instance.JumpLenght);
     }
 }

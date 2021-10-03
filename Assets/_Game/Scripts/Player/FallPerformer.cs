@@ -13,7 +13,7 @@ namespace RH.Game.Player
         [SerializeField] private CollisionDetector _detector;
 
         private bool _isFall => !_jumper.IsJumping && !_detector.IsGrounded;
-        private PrototypeSettings _settings => PrototypeSettings.Instance;
+        private StaticData _settings => StaticData.Instance;
         private float _direction => KeyboardInput.Direction * _settings.PlayerSpeed * _settings.FallAirControlPercent;
         private float _defaultMaterialFriction => _settings.BodyFriction;
         private bool _isPerformFalling;

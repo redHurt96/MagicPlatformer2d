@@ -4,7 +4,7 @@ namespace RH.Game.Settings
 {
     public class SettingsInitializer : MonoBehaviour
     {
-        [SerializeField] private PrototypeSettings _settings;
+        [SerializeField] private StaticData _settings;
 
         private void Awake()
         {

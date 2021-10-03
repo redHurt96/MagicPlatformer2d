@@ -6,9 +6,13 @@ using UnityEngine.Serialization;
 
 namespace RH.Game.Settings
 {
-    [CreateAssetMenu(fileName = "New PrototypeSettings", menuName = "Game/PrototypeSettings", order = 0)]
-    public class PrototypeSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "New StaticData", menuName = "Game/StaticData", order = 0)]
+    public class StaticData : ScriptableObject
     {
+        [Header("ECS")] 
+        [AssetsOnly] public GameObject PlayerPrefab;
+        
+        
         #region PLAYER_SETTINGS
 
         [Header("Player settings")]
@@ -36,7 +40,7 @@ namespace RH.Game.Settings
         public bool EnableInputLog;
         public bool EnableJumpGizmos;
         
-        public static PrototypeSettings Instance { get; private set; }
+        public static StaticData Instance { get; private set; }
 
         public void Init()
         {

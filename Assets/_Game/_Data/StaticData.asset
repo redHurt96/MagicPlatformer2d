@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7043a2cba720ced40bdadc722bdd41bd, type: 3}
-  m_Name: DefaultPrototypeSettings
+  m_Name: StaticData
   m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 9101359769824934921, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
   _playerSpeed: 8
   JumpCurve:
     serializedVersion: 2
