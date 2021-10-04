@@ -1,7 +1,6 @@
 using Leopotam.Ecs;
-using RH.Game.Ecs.Systems;
-using RH.Game.Ecs.UnityComponents;
-using RH.Game.Settings;
+using RH.Game.Systems;
+using RH.Game.UnityComponents;
 using UnityEngine;
 
 namespace RH.Game.Ecs
@@ -24,20 +23,14 @@ namespace RH.Game.Ecs
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
             _systems
-                .Add(new PlayerSpawnSystem())
+                .Add(new PlayerInitSystem())
+                .Add(new PlayerGroundedSystem())
+                .Add(new KeyboardDirectionInputSystem())
+                .Add(new KeyboardJumpInputSystem())
+                .Add(new PlayerMoveSystem())
+                .Add(new PlayerJumpSystem())
                 .Inject(_staticData)
                 .Inject(_sceneData)
-                // register your systems here, for example:
-                // .Add (new TestSystem1 ())
-                // .Add (new TestSystem2 ())
-                
-                // register one-frame components (order is important), for example:
-                // .OneFrame<TestComponent1> ()
-                // .OneFrame<TestComponent2> ()
-                
-                // inject service instances here (order doesn't important), for example:
-                // .Inject (new CameraService ())
-                // .Inject (new NavMeshSupport ())
                 .Init ();
         }
 
