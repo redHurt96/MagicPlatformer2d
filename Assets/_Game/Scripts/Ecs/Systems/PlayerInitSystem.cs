@@ -1,6 +1,6 @@
 using Leopotam.Ecs;
 using RH.Game.Components;
-using RH.Game.Ecs;
+using RH.Game.Services;
 using RH.Game.UnityComponents;
 using UnityEngine;
 
@@ -14,14 +14,17 @@ namespace RH.Game.Systems
         
         public void Init()
         {
-            GameObject playerGameObject = Object.Instantiate(_staticData.PlayerPrefab, _sceneData.PlayerSpawnPosition, Quaternion.identity);
-            ref Player player = ref _world.NewEntity().Get<Player>();
+            var playerInstance = MovableSpawnSystem.Spawn(_staticData.PlayerPrefab, _sceneData.PlayerSpawnPosition);
+            var playerEntity = _world.NewEntity();
+            playerEntity.Get<Player>();
             
-            player.Rigidbody = playerGameObject.GetComponent<Rigidbody2D>();
-            player.SurfaceSlider = playerGameObject.GetComponent<SurfaceSlider>();
-            player.GroundDetector = playerGameObject.GetComponent<GroundDetector>();
+            ref var movable = ref playerEntity.Get<Movable>();
 
-            _sceneData.Camera.Follow = playerGameObject.transform;
+            movable.Rigidbody = playerInstance.GetComponent<Rigidbody2D>();
+            movable.GroundDetector = playerInstance.GetComponent<GroundDetector>();
+            movable.Speed = _staticData.Speed;
+
+            _sceneData.Camera.Follow = movable.Rigidbody.transform;
         }
     }
 }

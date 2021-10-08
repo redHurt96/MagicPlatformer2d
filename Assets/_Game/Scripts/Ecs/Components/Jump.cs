@@ -1,10 +1,4 @@
-﻿using UnityEngine;
-
-namespace RH.Game.Components
+﻿namespace RH.Game.Components
 {
-    public struct Jump
-    {
-        public Vector2 StartPosition;
-        public float Time;
-    }
+    public struct Jump { }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-namespace RH.Game.Ecs
+namespace RH.Game.Services
 {
     [CreateAssetMenu(fileName = "New StaticData", menuName = "Game/StaticData", order = 0)]
     public class StaticData : ScriptableObject

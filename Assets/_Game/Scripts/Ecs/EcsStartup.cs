@@ -1,9 +1,10 @@
+using UnityEngine;
 using Leopotam.Ecs;
 using RH.Game.Systems;
 using RH.Game.UnityComponents;
-using UnityEngine;
+using RH.Game.Services;
 
-namespace RH.Game.Ecs
+namespace RH.Game
 {
     sealed class EcsStartup : MonoBehaviour
     {
@@ -13,25 +14,23 @@ namespace RH.Game.Ecs
         private EcsWorld _world;
         private EcsSystems _systems;
 
-        private void Start () 
+        private void Start()
         {
-            _world = new EcsWorld ();
-            _systems = new EcsSystems (_world);
+            _world = new EcsWorld();
+            _systems = new EcsSystems(_world);
             
 #if UNITY_EDITOR
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
+
             _systems
                 .Add(new PlayerInitSystem())
-                .Add(new PlayerGroundedSystem())
-                .Add(new KeyboardDirectionInputSystem())
-                .Add(new KeyboardJumpInputSystem())
-                .Add(new PlayerMoveSystem())
-                .Add(new PlayerJumpSystem())
+                .Add(new KeyboardInputSystem())
+                .Add(new MoveSystem())
                 .Inject(_staticData)
                 .Inject(_sceneData)
-                .Init ();
+                .Init();
         }
 
         private void Update () 
