@@ -1,4 +1,10 @@
-﻿namespace RH.Game.Components
+﻿using UnityEngine;
+
+namespace RH.Game.Components
 {
-    public struct Jump { }
+    public struct Jump 
+    {
+        public float Progress;
+        public Vector2 StartPosition;
+    }
 }

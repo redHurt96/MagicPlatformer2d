@@ -15,5 +15,6 @@ namespace RH.Game.Services
         public AnimationCurve JumpCurve;
         public float JumpHeight;
         public float JumpTime;
+        public float JumpTreshhold;
     }
 }

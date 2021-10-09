@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RH.Game.Systems
+namespace RH.Game.Services
 {
     public sealed class MovableSpawnSystem
     {

@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: StaticData
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 9101359769824934921, guid: 1fe045acf5264a74685d7ec7ff134147, type: 3}
-  Speed: 0.5
+  Speed: 0.3
   JumpCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.608587
-      outSlope: 0.608587
+      inSlope: 4.240477
+      outSlope: 4.240477
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.2399586
+      outWeight: 0.05998965
     - serializedVersion: 3
       time: 0.50008625
       value: 0.9988675
@@ -38,14 +38,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0.00068264815
-      inSlope: -2.5388355
-      outSlope: -2.5388355
+      inSlope: -4.590107
+      outSlope: -4.590107
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.04552405
+      inWeight: 0.05000858
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  JumpHeight: 3
+  JumpHeight: 5
   JumpTime: 1
+  JumpTreshhold: 0.1

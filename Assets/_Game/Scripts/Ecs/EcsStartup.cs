@@ -20,12 +20,15 @@ namespace RH.Game
             _systems = new EcsSystems(_world);
             
 #if UNITY_EDITOR
-            Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
-            Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
+            Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
+            Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create(_systems);
 #endif
 
             _systems
                 .Add(new PlayerInitSystem())
+                .Add(new PlayerGroundedSystem())
+                .Add(new MovableStartJumpSystem())
+                .Add(new JumpSystem())
                 .Add(new KeyboardInputSystem())
                 .Add(new MoveSystem())
                 .Inject(_staticData)

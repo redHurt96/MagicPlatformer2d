@@ -10,7 +10,7 @@ namespace RH.Game.Systems
 
         private EcsFilter<Player> _filter;
         
-        void IEcsRunSystem.Run()
+        public void Run()
         {
             foreach (int i in _filter)
             {
@@ -31,8 +31,8 @@ namespace RH.Game.Systems
 
         private void CheckJump(ref EcsEntity playerEntity)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-                playerEntity.Get<Jump>();
+            if (Input.GetKeyDown(KeyCode.Space) && playerEntity.Has<Grounded>())
+                playerEntity.Get<CanJump>();
         }
     }
 }
