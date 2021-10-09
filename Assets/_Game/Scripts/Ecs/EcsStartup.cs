@@ -31,6 +31,9 @@ namespace RH.Game
                 .Add(new JumpSystem())
                 .Add(new KeyboardInputSystem())
                 .Add(new MoveSystem())
+                .Add(new StartTouchSystem())
+                .Add(new UpdateTouchSystem())
+                .Add(new FinishTouchSystem())
                 .Inject(_staticData)
                 .Inject(_sceneData)
                 .Init();
