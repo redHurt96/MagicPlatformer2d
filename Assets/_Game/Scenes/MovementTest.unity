@@ -922,17 +922,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5860556781582070856, guid: 3065cf94e0784e440beb842f5213de4d, type: 3}
   m_PrefabInstance: {fileID: 5860556781324446511}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &820846441 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5860556781582070854, guid: 3065cf94e0784e440beb842f5213de4d, type: 3}
-  m_PrefabInstance: {fileID: 5860556781324446511}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820846439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &820846444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,8 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1687dade6486f7448846e34d102976a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpellNumber: 0
-  _button: {fileID: 820846441}
+  _spellType: 0
 --- !u!1 &823148179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,17 +1325,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5860556782221856108, guid: 3065cf94e0784e440beb842f5213de4d, type: 3}
   m_PrefabInstance: {fileID: 5860556781324446511}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1452189253 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5860556782221856106, guid: 3065cf94e0784e440beb842f5213de4d, type: 3}
-  m_PrefabInstance: {fileID: 5860556781324446511}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452189251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1452189256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,8 +1337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1687dade6486f7448846e34d102976a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpellNumber: 1
-  _button: {fileID: 1452189253}
+  _spellType: 0
 --- !u!1 &1476569867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,8 +1688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpellButtons:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 820846444}
+  - {fileID: 1452189256}
   _playerSpawnPoint: {fileID: 1523232765}
   _camera: {fileID: 1870716327}
 --- !u!4 &1850375798

@@ -1,17 +1,20 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
 using RH.Game.Components;
-using System.Collections.Generic;
 
 namespace RH.Game.Systems
 {
-    public class StartTouchSystem : IEcsRunSystem
+    public abstract class BaseTouchSystem : IEcsRunSystem
     {
-        private readonly EcsWorld _world;
+        protected abstract bool UnderUi { get; }
+        protected abstract bool HasTouch { get; }
+
+        protected readonly EcsWorld _world;
 
         public void Run()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (HasTouch && !UnderUi)
             {
                 ref var touchInput = ref _world.NewEntity().Get<TouchInput>();
                 InitTouchComponent(ref touchInput);

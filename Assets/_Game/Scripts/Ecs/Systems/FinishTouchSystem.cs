@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using RH.Game.Components;
+using UnityEngine;
 
 namespace RH.Game.Systems
 {
@@ -10,7 +11,10 @@ namespace RH.Game.Systems
         public void Run()
         {
             foreach (int i in _filter)
-                _filter.GetEntity(i).Get<FinishInput>();
+            {
+                if (Input.GetMouseButtonUp(0))
+                    _filter.GetEntity(i).Get<FinishInput>();
+            }
         }
     }
 }
