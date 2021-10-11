@@ -20,5 +20,9 @@ namespace RH.Game.Services
         [Space]
 
         public SpellType DefaultSpell;
+
+        [Space] 
+        
+        public float FireballSpeed;
     }
 }
