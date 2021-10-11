@@ -23,6 +23,8 @@ namespace RH.Game.Services
 
         [Space] 
         
+        [AssetsOnly] public GameObject FireballPrefab;
         public float FireballSpeed;
+        public float FireballCastInputLenghtTreshhold;
     }
 }

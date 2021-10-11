@@ -50,3 +50,6 @@ MonoBehaviour:
   JumpHeight: 5
   JumpTime: 1
   JumpTreshhold: 0.1
+  DefaultSpell: 0
+  FireballPrefab: {fileID: 4036417674992172681, guid: 319a83d3fed558e42a55942bb737a7e4, type: 3}
+  FireballSpeed: 0.3

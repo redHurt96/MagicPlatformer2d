@@ -44,8 +44,10 @@ namespace RH.Game
                 .Add(new FinishTouchSystem())
 
                 .Add(new SelectSpellSystem())
-                
+
+                .Add(new CanSpawnFireballSystem())
                 .Add(new FireballSpawnSystem())
+                .Add(new FireballMoveSystem())
 
                 .Inject(_staticData)
                 .Inject(_sceneData)

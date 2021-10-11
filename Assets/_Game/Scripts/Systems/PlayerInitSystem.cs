@@ -14,17 +14,11 @@ namespace RH.Game.Systems
         
         public void Init()
         {
-            var playerInstance = MovableSpawnSystem.Spawn(_staticData.PlayerPrefab, _sceneData.PlayerSpawnPosition);
             var playerEntity = _world.NewEntity();
             playerEntity.Get<Player>();
-            
-            ref var movable = ref playerEntity.Get<Movable>();
 
-            movable.Rigidbody = playerInstance.GetComponent<Rigidbody2D>();
-            movable.GroundDetector = playerInstance.GetComponent<GroundDetector>();
-            movable.Speed = _staticData.Speed;
-
-            _sceneData.Camera.Follow = movable.Rigidbody.transform;
+            MovableSpawnSystem.Init(ref playerEntity, _staticData.PlayerPrefab, _sceneData.PlayerSpawnPosition, _staticData.Speed);
+            _sceneData.Camera.Follow = playerEntity.Get<Movable>().Rigidbody.transform;
         }
     }
 }
