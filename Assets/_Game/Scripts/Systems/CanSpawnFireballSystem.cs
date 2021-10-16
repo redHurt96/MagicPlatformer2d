@@ -28,7 +28,11 @@ namespace RH.Game.Systems
                     ref var touchInput = ref _inputFilter.Get1(j);
 
                     if (IsValidLenght(ref touchInput))
-                        _inputFilter.GetEntity(j).Get<CanSpawnFireball>();
+                    {
+                        ref var entity = ref _inputFilter.GetEntity(j);
+                        entity.Get<CanSpawnFireball>();
+                        entity.Get<CanCastSpell>();
+                    }
                 }
             }
         }
@@ -41,6 +45,22 @@ namespace RH.Game.Systems
             return Vector2.Distance(start, end) >= _staticData.FireballCastInputLenghtTreshhold;
 
             Vector3 Convert(Vector2 point) => GameCamera.ScreenToWorldPoint(point);
+        }
+    }
+
+    public class DestroyIfCantCastAnythingSystem : IEcsRunSystem
+    {
+        private EcsFilter<TouchInput, FinishInput> _filter;
+
+        public void Run()
+        {
+            foreach (int i in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(i);
+
+                if (!entity.Has<CanCastSpell>())
+                    entity.Del<TouchInput>();
+            }
         }
     }
 }

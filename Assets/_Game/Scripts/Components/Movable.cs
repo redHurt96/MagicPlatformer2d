@@ -6,7 +6,7 @@ namespace RH.Game.Components
     public struct Movable
     {
         public Rigidbody2D Rigidbody;
-        public GroundDetector GroundDetector;
+        public CollisionDetector CollisionDetector;
         public float Speed;
 
         public Vector2 Position => Rigidbody.position;

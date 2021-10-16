@@ -21,10 +21,14 @@ namespace RH.Game.Services
 
         public SpellType DefaultSpell;
 
-        [Space] 
-        
+        [Space]
+
         [AssetsOnly] public GameObject FireballPrefab;
         public float FireballSpeed;
         public float FireballCastInputLenghtTreshhold;
+
+        [Space]
+
+        [AssetsOnly] public Transform SpellPainterPrefab;
     }
 }

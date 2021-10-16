@@ -5,7 +5,7 @@ namespace RH.Game.UnityComponents
 {
     public class CollisionDetector : MonoBehaviour
     {
-        public bool IsGrounded => _colliders.Count > 0;
+        public bool IsCollided => _colliders.Count > 0;
 
         private List<Collider2D> _colliders = new List<Collider2D>();
 

@@ -53,3 +53,5 @@ MonoBehaviour:
   DefaultSpell: 0
   FireballPrefab: {fileID: 4036417674992172681, guid: 319a83d3fed558e42a55942bb737a7e4, type: 3}
   FireballSpeed: 0.3
+  FireballCastInputLenghtTreshhold: 3
+  SpellPainterPrefab: {fileID: 875821683018594320, guid: b1bddb99677922141a45d10b461c97f8, type: 3}

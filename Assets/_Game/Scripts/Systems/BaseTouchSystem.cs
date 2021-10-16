@@ -16,7 +16,11 @@ namespace RH.Game.Systems
         {
             if (HasTouch && !UnderUi)
             {
-                ref var touchInput = ref _world.NewEntity().Get<TouchInput>();
+                var entity = _world.NewEntity();
+
+                ref var startTouchInput = ref entity.Get<StartTouchInput>();
+                ref var touchInput = ref entity.Get<TouchInput>();
+
                 InitTouchComponent(ref touchInput);
             }
         }

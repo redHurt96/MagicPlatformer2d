@@ -13,7 +13,7 @@ namespace RH.Game.Services
             var gameObject = GameObject.Instantiate(prefab, position, Quaternion.identity);
 
             movable.Rigidbody = gameObject.GetComponent<Rigidbody2D>();
-            movable.GroundDetector = gameObject.GetComponent<GroundDetector>();
+            movable.CollisionDetector = gameObject.GetComponent<CollisionDetector>();
             movable.Speed = speed;
         }
     }

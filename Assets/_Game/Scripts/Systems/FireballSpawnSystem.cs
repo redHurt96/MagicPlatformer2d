@@ -11,9 +11,9 @@ namespace RH.Game.Systems
     {
         private readonly StaticData _staticData;
         private readonly EcsWorld _world;
-        
+
         private EcsFilter<TouchInput, CanSpawnFireball> _touchFilter;
-        
+
         public void Run()
         {
             foreach (int i in _touchFilter)
@@ -32,12 +32,9 @@ namespace RH.Game.Systems
 
         private void InitFireballComponent(Vector2 from, Vector2 to, ref EcsEntity entity)
         {
-            var gameObject = GameObject.Instantiate(_staticData.FireballPrefab, GameCamera.ScreenToWorldPoint(from), Quaternion.identity);
+            MovableSpawnSystem.Init(ref entity, _staticData.FireballPrefab, GameCamera.ScreenToWorldPoint(from), _staticData.FireballSpeed);
             ref var fireball = ref entity.Get<Fireball>();
-
             fireball.Direction = (to - from).normalized;
-            fireball.Rigidbody = gameObject.GetComponent<Rigidbody2D>();
-            fireball.Speed = _staticData.FireballSpeed;
         }
 
         private void RemoveInputEntity(int j)

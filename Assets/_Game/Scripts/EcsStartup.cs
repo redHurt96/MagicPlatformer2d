@@ -43,11 +43,20 @@ namespace RH.Game
                 .Add(new UpdateTouchSystem())
                 .Add(new FinishTouchSystem())
 
+                .Add(new CreateSpellPainterSystem())
+                .Add(new MoveSpellPainterSystem())
+                .Add(new DestroySpellPainterSystem())
+
                 .Add(new SelectSpellSystem())
 
                 .Add(new CanSpawnFireballSystem())
+                .Add(new DestroyIfCantCastAnythingSystem())
+
                 .Add(new FireballSpawnSystem())
                 .Add(new FireballMoveSystem())
+                .Add(new FireballCheckCollisionsSystem())
+
+                .Add(new DestroyEmptyTouchEntities())
 
                 .Inject(_staticData)
                 .Inject(_sceneData)

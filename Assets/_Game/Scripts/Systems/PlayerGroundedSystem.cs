@@ -22,8 +22,8 @@ namespace RH.Game.Systems
                     entity.Del<Grounded>();
             }
 
-            bool CanAddGrounded(ref Movable movable, ref EcsEntity entity) => !entity.Has<Grounded>() && movable.GroundDetector.IsGrounded;
-            bool CanRemoveGrounded(ref Movable movable, ref EcsEntity entity) => entity.Has<Grounded>() && !movable.GroundDetector.IsGrounded;
+            bool CanAddGrounded(ref Movable movable, ref EcsEntity entity) => !entity.Has<Grounded>() && movable.CollisionDetector.IsCollided;
+            bool CanRemoveGrounded(ref Movable movable, ref EcsEntity entity) => entity.Has<Grounded>() && !movable.CollisionDetector.IsCollided;
         }
 
         private void AddGroundedComponent(ref EcsEntity entity)
