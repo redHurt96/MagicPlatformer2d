@@ -1,28 +1,41 @@
-using System;
 using UnityEngine;
+using Zenject;
+using RH.Game.Player;
 
 namespace RH.Game.Input
 {
     public class KeyboardInput : MonoBehaviour
     {
-        public static event Action<Vector2> OnInput;
-        public static float Direction;
-        public static bool IsMoving => !Mathf.Approximately(Direction, 0f);
-        public static bool JumpButtonPressed => UnityEngine.Input.GetKeyDown(KeyCode.Space);
+        private const string AXIS_NAME = "Horizontal";
 
-        private void Awake()
+        private Mover _mover;
+        private Jumper _jumper;
+
+        [Inject]
+        private void Construct(Mover mover, Jumper jumper)
         {
-            if (!Application.isEditor)
-                Destroy(gameObject);
+            _mover = mover;
+            _jumper = jumper;
         }
 
         private void Update()
         {
-            float horizontal = UnityEngine.Input.GetAxisRaw("Horizontal");
-            Direction = horizontal;
-            
-            if (IsMoving)
-                OnInput?.Invoke(new Vector2(horizontal, 0f));
+            UpdateMovement();
+            UpdateJump();
+        }
+
+        private void UpdateMovement()
+        {
+            float axis = UnityEngine.Input.GetAxis(AXIS_NAME);
+
+            if (!Mathf.Approximately(axis, 0f))
+                _mover.Move(axis);
+        }
+
+        private void UpdateJump()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
+                _jumper.Jump();
         }
     }
 }

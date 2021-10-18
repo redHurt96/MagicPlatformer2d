@@ -1,40 +1,31 @@
-﻿using System;
+using RH.Game.Data;
 using UnityEngine;
-using RH.Game.Settings;
-using RH.Game.Input;
+using Zenject;
 
 namespace RH.Game.Player
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
-        [SerializeField] private SurfaceSlider _surfaceSlider;
-        [SerializeField] private CollisionDetector _collisionDetector;
+        private PlayerData _playerData;
+        private Rigidbody2D _rigidbody;
 
-        private float _speed => PrototypeSettings.Instance.PlayerSpeed;
-
-        private void Start()
+        [Inject]
+        private void Inject(PlayerData playerData)
         {
-            KeyboardInput.OnInput += Move;
+            _playerData = playerData;
         }
 
-        private void OnDestroy()
+        private void Awake()
         {
-            KeyboardInput.OnInput -= Move;
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        private void Move(Vector2 direction)
+        public void Move(float axis)
         {
-            if (!_collisionDetector.IsGrounded)
-                return;
+            Vector2 offset = new Vector2(axis, 0f) * _playerData.Speed * Time.deltaTime;
 
-            Vector2 moveOffset = CalculateMoveOffset(direction);
-            transform.Translate(moveOffset);
-        }
-
-        private Vector2 CalculateMoveOffset(Vector2 direction)
-        {
-            Vector2 directionAlongSurface = _surfaceSlider.Project(direction.normalized);
-            return directionAlongSurface * (_speed * Time.deltaTime);
+            _rigidbody.MovePosition(_rigidbody.position + offset);
         }
     }
 }
