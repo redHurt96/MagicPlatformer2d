@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace RH.Game.Data
 {
@@ -6,5 +7,8 @@ namespace RH.Game.Data
     public class PlayerData
     {
         public float Speed;
+
+        public AnimationCurve JumpCurve;
+        public float JumpHeight;
     }
 }
