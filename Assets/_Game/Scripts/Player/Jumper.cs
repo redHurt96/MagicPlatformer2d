@@ -1,17 +1,17 @@
-using RH.Game.Data;
 using UnityEngine;
 using Zenject;
+using RH.Game.Settings;
 
 namespace RH.Game.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Jumper : MonoBehaviour
     {
-        private PlayerData _playerData;
+        private PlayerSettings _playerData;
         private Rigidbody2D _rigidbody;
 
         [Inject]
-        private void Inject(PlayerData playerData)
+        private void Inject(PlayerSettings playerData)
         {
             _playerData = playerData;
         }

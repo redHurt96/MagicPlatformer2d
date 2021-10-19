@@ -1,31 +1,33 @@
 using UnityEngine;
 using Zenject;
 using RH.Game.Data;
+using RH.Game.Settings;
 
 namespace RH.Game.Player
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(CollisionDetector))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
-        private PlayerData _playerData;
+        private PlayerInLevelData _playerInLevelData;
+        private PlayerSettings _playerData;
         private Rigidbody2D _rigidbody;
-        private CollisionDetector _collisionDetector;
 
         [Inject]
-        private void Inject(PlayerData playerData)
+        private void Inject(PlayerSettings playerData, PlayerInLevelData playerInLevelData)
         {
             _playerData = playerData;
+            _playerInLevelData = playerInLevelData;
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
-            _collisionDetector = GetComponent<CollisionDetector>();
+            
         }
 
         public void Move(float axis)
         {
-            if (_collisionDetector.IsCollide)
+            if (_playerInLevelData.IsCollide)
                 MovePosition(axis);
         }
 

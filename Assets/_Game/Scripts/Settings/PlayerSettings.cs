@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-namespace RH.Game.Data
+namespace RH.Game.Settings
 {
     [Serializable]
-    public class PlayerData
+    public class PlayerSettings
     {
         public float Speed;
 
