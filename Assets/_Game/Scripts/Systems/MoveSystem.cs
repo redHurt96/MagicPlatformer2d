@@ -16,10 +16,7 @@ namespace RH.Game.Systems
                 ref var direction = ref _filter.Get2(i);
 
                 if (!_filter.GetEntity(i).Has<Jump>())
-                {
                     Move(ref movable, ref direction);
-                    RemoveMoveDirection(i);
-                }
             }
         }
 
@@ -28,10 +25,5 @@ namespace RH.Game.Systems
         private static Vector2 GetMoveVector(ref Movable movable, ref MoveDirection moveDirection) => movable.Position + GetOffset(ref movable, ref moveDirection);
 
         private static void Move(ref Movable movable, ref MoveDirection moveDirection) => movable.Rigidbody.MovePosition(GetMoveVector(ref movable, ref moveDirection));
-
-        private void RemoveMoveDirection(int byEntityIndex)
-        {
-            _filter.GetEntity(byEntityIndex).Del<MoveDirection>();
-        }
     }
 }

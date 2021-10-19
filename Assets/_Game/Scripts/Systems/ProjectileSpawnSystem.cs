@@ -3,11 +3,12 @@ using Leopotam.Ecs;
 using RH.Game.Components;
 using RH.Game.Enums;
 using RH.Game.Services;
+using System;
 using UnityEngine;
 
 namespace RH.Game.Systems
 {
-    public class FireballSpawnSystem : IEcsRunSystem
+    public class ProjectileSpawnSystem : IEcsRunSystem
     {
         private readonly StaticData _staticData;
         private readonly EcsWorld _world;
@@ -27,14 +28,21 @@ namespace RH.Game.Systems
         private void Spawn(Vector2 from, Vector2 to)
         {
             var entity = _world.NewEntity();
+
             InitFireballComponent(from, to, ref entity);
+            InitProjectileComponent(ref entity);
         }
 
         private void InitFireballComponent(Vector2 from, Vector2 to, ref EcsEntity entity)
         {
             MovableSpawnSystem.Init(ref entity, _staticData.FireballPrefab, GameCamera.ScreenToWorldPoint(from), _staticData.FireballSpeed);
-            ref var fireball = ref entity.Get<Fireball>();
+            ref var fireball = ref entity.Get<MoveDirection>();
             fireball.Direction = (to - from).normalized;
+        }
+
+        private void InitProjectileComponent(ref EcsEntity entity)
+        {
+            entity.Get<Projectile>();
         }
 
         private void RemoveInputEntity(int j)

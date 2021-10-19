@@ -28,8 +28,10 @@ namespace RH.Game
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerGroundedSystem())
 
+#if UNITY_EDITOR
                 .Add(new KeyboardInputSystem())
-                
+#endif
+
                 .Add(new MovableStartJumpSystem())
                 .Add(new JumpSystem())
                 .Add(new MoveSystem())
@@ -52,9 +54,8 @@ namespace RH.Game
                 .Add(new CanSpawnFireballSystem())
                 .Add(new DestroyIfCantCastAnythingSystem())
 
-                .Add(new FireballSpawnSystem())
-                .Add(new FireballMoveSystem())
-                .Add(new FireballCheckCollisionsSystem())
+                .Add(new ProjectileSpawnSystem())
+                .Add(new ProjectileCheckCollisionsSystem())
 
                 .Add(new DestroyEmptyTouchEntities())
 

@@ -26,15 +26,21 @@ namespace RH.Game.Systems
 
         private void PerformJump(ref EcsEntity entity, ref Movable movable, ref Jump jump)
         {
+            Vector2 horizontalOffset = GetHorizontalOffset(ref entity, ref movable);
+
+            float verticalPosition = jump.StartPosition.y + _staticData.JumpCurve.Evaluate(jump.Progress) * _staticData.JumpHeight;
+            movable.Rigidbody.MovePosition(new Vector2(movable.Position.x + horizontalOffset.x, verticalPosition));
+
+            jump.Progress += Time.deltaTime / _staticData.JumpTime;
+        }
+
+        private static Vector2 GetHorizontalOffset(ref EcsEntity entity, ref Movable movable)
+        {
             Vector2 horizontalOffset = default;
 
             if (entity.Has<MoveDirection>())
                 horizontalOffset = MoveSystem.GetOffset(ref movable, ref entity.Get<MoveDirection>());
-
-            float verticalPosition = jump.StartPosition.y + _staticData.JumpCurve.Evaluate(jump.Progress) * _staticData.JumpHeight;
-            movable.Rigidbody.MovePosition(new Vector2(movable.Position.x + horizontalOffset.x,  + verticalPosition));
-
-            jump.Progress += Time.deltaTime / _staticData.JumpTime;
+            return horizontalOffset;
         }
 
         private void DeleteJumpIfCan(ref EcsEntity entity, ref Jump jump)

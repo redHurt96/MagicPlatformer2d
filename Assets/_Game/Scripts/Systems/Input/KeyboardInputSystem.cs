@@ -26,7 +26,7 @@ namespace RH.Game.Systems
             float axis = Input.GetAxis(HORIZONTAL);
 
             if (!Mathf.Approximately(0f, axis))
-                playerEntity.Get<MoveDirection>().Direction = axis;
+                playerEntity.Get<MoveDirection>().Direction = new Vector2(axis, 0f);
         }
 
         private void CheckJump(ref EcsEntity playerEntity)
