@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7043a2cba720ced40bdadc722bdd41bd, type: 3}
   m_Name: DefaultPrototypeSettings
   m_EditorClassIdentifier: 
-  _playerSpeed: 8
+  MoveSpeed: 8
   JumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -35,6 +35,15 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.19208616
     - serializedVersion: 3
+      time: 0.9947881
+      value: 0.026735827
+      inSlope: -3.0880845
+      outSlope: -3.0880845
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1.8166084
       value: -4.305488
       inSlope: -8.11616
@@ -46,8 +55,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  JumpHeight: 5
-  JumpLenght: 12
+  JumpHeight: 7
+  JumpLenght: 7
   AirControlPercent: 1
   FallAirControlPercent: 1
   JumpTime: 1
@@ -59,6 +68,5 @@ MonoBehaviour:
   ShieldLifeTime: 3
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
   ShieldsLenght: 8
-  BodyFriction: 1000
   EnableInputLog: 0
   EnableJumpGizmos: 1

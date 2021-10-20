@@ -5,20 +5,27 @@ using RH.Game.Input;
 
 namespace RH.Game.Player
 {
-    public class CurveJumper : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody2D), typeof(CollisionDetector))]
+    public class JumpPerformer : MonoBehaviour
     {
-        [SerializeField] private CollisionDetector _collisionDetector;
-        [SerializeField] private Rigidbody2D _rigidbody;
-        
+        private Rigidbody2D _rigidbody;
+        private CollisionDetector _collisionDetector;
+
         public bool IsJumping { get; private set; }
 
         private PrototypeSettings _settings => PrototypeSettings.Instance;
         private AnimationCurve _curve => _settings.JumpCurve;
         private float _height => _settings.JumpHeight;
-        private float _lenght => _settings.JumpLenght;
+        private float _speed => _settings.MoveSpeed;
         private float _airControlPercent => _settings.AirControlPercent;
         private float _time => _settings.JumpTime;
         private bool _isGrounded => _collisionDetector.IsCollide;
+
+        private void Start()
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _collisionDetector = GetComponent<CollisionDetector>();
+        }
 
         private void Update()
         {
@@ -33,6 +40,7 @@ namespace RH.Game.Player
 
         private IEnumerator PerformJump()
         {
+            _rigidbody.velocity = Vector2.zero;
             IsJumping = true;
             float jumpTime = 0f;
             Vector2 startPoint = transform.position;
@@ -57,7 +65,7 @@ namespace RH.Game.Player
             float CalculateHorizontalOffset()
             {
                 var inputCoefficient = Mathf.Lerp(startDirection, KeyboardInput.Direction, _airControlPercent);
-                return _lenght * Time.deltaTime * inputCoefficient;
+                return _speed * Time.deltaTime * inputCoefficient;
             }
             float CalculateVerticalOffset()
             {                

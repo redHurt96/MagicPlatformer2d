@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using RH.Game.Settings;
 using UnityEngine;
 
 namespace RH.Game.Player
@@ -12,27 +11,24 @@ namespace RH.Game.Player
         private readonly List<Collider2D> _otherColliders = new List<Collider2D>();
         private readonly List<Collider2D> _groundColliders = new List<Collider2D>();
 
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Transform _groundedAnchor;
 
         private void OnCollisionEnter2D(Collision2D other)
         {
             _otherColliders.Add(other.collider);
-            _rigidbody.sharedMaterial.friction = IsGrounded ? PrototypeSettings.Instance.BodyFriction : 0f;
+
+            if (other.GetContact(0).point.y < _groundedAnchor.position.y)
+                _groundColliders.Add(other.collider);
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
-            _otherColliders.Remove(other.collider);
-        }
+            Collider2D collider = other.collider;
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            _groundColliders.Add(other);
-        }
-        
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            _groundColliders.Remove(other);
+            _otherColliders.Remove(collider);
+
+            if (_groundColliders.Contains(collider))
+                _groundColliders.Remove(collider);
         }
     }
 }

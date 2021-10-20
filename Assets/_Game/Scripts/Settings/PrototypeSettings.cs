@@ -1,8 +1,7 @@
-using Between.SpellsEffects.ShieldSpell;
-using RH.Game.Projectiles;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.Serialization;
+using Between.SpellsEffects.ShieldSpell;
+using RH.Game.Projectiles;
 
 namespace RH.Game.Settings
 {
@@ -11,9 +10,9 @@ namespace RH.Game.Settings
     {
         #region PLAYER_SETTINGS
 
-        [Header("Player settings")]
-        [SerializeField] private float _playerSpeed;
-        public float PlayerSpeed => _playerSpeed * 2f;
+        [Header("Movement settings")]
+
+        public float MoveSpeed;
         public AnimationCurve JumpCurve;
         public float JumpHeight;
         public float JumpLenght;
@@ -32,7 +31,6 @@ namespace RH.Game.Settings
         public float ShieldsLenght;
         
         [Header("Dev stuff")]
-        public float BodyFriction = 1000;
         public bool EnableInputLog;
         public bool EnableJumpGizmos;
         

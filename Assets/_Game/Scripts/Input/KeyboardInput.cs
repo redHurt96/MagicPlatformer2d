@@ -16,7 +16,7 @@ namespace RH.Game.Input
 
         private void Update()
         {
-            float horizontal = UnityEngine.Input.GetAxisRaw("Horizontal");
+            float horizontal = UnityEngine.Input.GetAxis("Horizontal");
             Direction = horizontal;
             OnInput?.Invoke(new Vector2(horizontal, 0f));
         }
