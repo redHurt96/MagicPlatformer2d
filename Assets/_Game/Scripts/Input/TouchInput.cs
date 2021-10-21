@@ -1,6 +1,7 @@
 using System;
 using Between;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace RH.Game.Input.Tracking
 {
@@ -13,14 +14,26 @@ namespace RH.Game.Input.Tracking
         public static Vector2 ScreenPosition => _mousePosition;
         public static Vector3 WorldPosition => GameCamera.ScreenToWorldPoint(ScreenPosition);
         private static Vector2 _mousePosition => UnityEngine.Input.mousePosition;
-        
+
         private InputState _state = InputState.None;
         private Vector2 _pressPosition;
         private Vector2 _previousPosition;
 
+        private bool _underUi
+        {
+            get
+            {
+#if UNITY_ANDROID && !UNITY_EDITOR
+                return EventSystem.current.IsPointerOverGameObject(UnityEngine.Input.GetTouch(0).fingerId);
+#else
+                return EventSystem.current.IsPointerOverGameObject();
+#endif
+            }
+        }
+
         private void Update()
         {
-            if (UnityEngine.Input.GetMouseButtonDown(0) && _state == InputState.None)
+            if (UnityEngine.Input.GetMouseButtonDown(0) && _state == InputState.None && !_underUi)
                 PerformPress();
             else if (IsStartDrag())
                 PerformStartDrag();

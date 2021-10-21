@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using RH.Game.Settings;
+using RH.Utilities.Extensions;
 using RH.Game.Input;
 
 namespace RH.Game.Player
@@ -9,16 +10,13 @@ namespace RH.Game.Player
     {
         private Rigidbody2D _rigidbody;
         private CollisionDetector _collisionDetector;
-        
+
         private float _speed => PrototypeSettings.Instance.MoveSpeed;
-        private Vector2 _direction;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _collisionDetector = GetComponent<CollisionDetector>();
-
-            KeyboardInput.OnInput += WriteDirection;
         }
 
         private void Update()
@@ -26,30 +24,28 @@ namespace RH.Game.Player
             Move();
         }
 
-        private void OnDestroy()
-        {
-            KeyboardInput.OnInput -= WriteDirection;
-        }
-
-        private void WriteDirection(Vector2 direction)
-        {
-            _direction = direction;
-        }
-        
         private void Move()
         {
             if (!_collisionDetector.IsGrounded)
                 return;
 
-            if (_direction == Vector2.zero)
-            {
-                _rigidbody.velocity = _direction;
-            }
+            var direction = MoveInput.Direction;
+
+            if (direction.Approximately(Vector2.zero))
+                ClearVelocity();
             else
-            {
-                Vector2 offset = _direction * _speed;
-                _rigidbody.velocity = offset;
-            }
+                SetVelocity(direction);
+        }
+
+        private void ClearVelocity()
+        {
+            _rigidbody.velocity = Vector2.zero;
+        }
+        
+        private void SetVelocity(Vector2 direction)
+        {
+            Vector2 offset = direction * _speed;
+            _rigidbody.velocity = offset;
         }
     }
 }

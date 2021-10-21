@@ -15,7 +15,6 @@ namespace RH.Game.Settings
         public float MoveSpeed;
         public AnimationCurve JumpCurve;
         public float JumpHeight;
-        public float JumpLenght;
         [Range(0,1)] public float AirControlPercent;
         [Range(0,1)] public float FallAirControlPercent;
         public float JumpTime;
@@ -32,7 +31,6 @@ namespace RH.Game.Settings
         
         [Header("Dev stuff")]
         public bool EnableInputLog;
-        public bool EnableJumpGizmos;
         
         public static PrototypeSettings Instance { get; private set; }
 

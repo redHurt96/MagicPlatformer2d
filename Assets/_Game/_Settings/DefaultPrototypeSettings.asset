@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7043a2cba720ced40bdadc722bdd41bd, type: 3}
   m_Name: DefaultPrototypeSettings
   m_EditorClassIdentifier: 
-  MoveSpeed: 8
+  MoveSpeed: 10
   JumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -56,7 +56,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   JumpHeight: 7
-  JumpLenght: 7
   AirControlPercent: 1
   FallAirControlPercent: 1
   JumpTime: 1
@@ -69,4 +68,3 @@ MonoBehaviour:
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
   ShieldsLenght: 8
   EnableInputLog: 0
-  EnableJumpGizmos: 1
