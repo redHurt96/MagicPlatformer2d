@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using RH.Game.Spells;
+using System.Collections;
 
 namespace RH.Game.UI
 {
@@ -9,8 +10,12 @@ namespace RH.Game.UI
         [SerializeField] private Button[] _buttons;
         [SerializeField] private int _default;
 
-        private void Start()
+        private WaitUntil _waitSpells = new WaitUntil(() => SpellsCollection.Instance != null);
+
+        private IEnumerator Start()
         {
+            yield return _waitSpells;
+
             Select(_default);
             AttachListeners();
         }

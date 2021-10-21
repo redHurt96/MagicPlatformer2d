@@ -19,7 +19,7 @@ namespace RH.Game.Spells
         private void InitSpells()
         {
             var spells = new SpellsCollection();
-            spells.AddSpell(SpellType.Fireball, new Fireball(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
+            spells.AddSpell(SpellType.Projectile, new Projectile(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
             spells.AddSpell(SpellType.Shield, new ShieldSpell(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
         }
 

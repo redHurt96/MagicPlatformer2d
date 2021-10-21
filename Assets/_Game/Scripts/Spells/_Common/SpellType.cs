@@ -2,7 +2,7 @@
 {
     public enum SpellType
     {
-        Fireball = 0,
+        Projectile = 0,
         Shield
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace RH.Game.Spells
 {
-    public class Fireball : BaseSpell
+    public class Projectile : BaseSpell
     {
         private ProjectileSpawner _spawner;
         
-        public Fireball(CastCondition condition, CompleteBehavior behavior) : base(condition, behavior)
+        public Projectile(CastCondition condition, CompleteBehavior behavior) : base(condition, behavior)
         {
             _spawner = new ProjectileSpawner(PrototypeSettings.Instance.ProjectileData);
         }
