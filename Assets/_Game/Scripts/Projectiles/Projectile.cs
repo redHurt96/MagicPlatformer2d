@@ -1,5 +1,4 @@
-﻿using System;
-using Between.Interfaces;
+﻿using Between.Interfaces;
 using UnityEngine;
 
 namespace RH.Game.Projectiles
@@ -15,7 +14,7 @@ namespace RH.Game.Projectiles
             _data = data;
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        
+
         public void Launch(Vector3 direction)
         {
             _rigidbody2D.velocity = direction * _data.Speed;
@@ -25,7 +24,7 @@ namespace RH.Game.Projectiles
         {
             if (other.TryGetComponent<IDamagable>(out var damagable))
                 damagable.ApplyDamage(_data.Damage);
-            
+
             Destroy(gameObject);
         }
     }

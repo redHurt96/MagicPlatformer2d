@@ -13,7 +13,7 @@ namespace RH.Game.Projectiles
         
         public void Spawn(Vector3 from, Vector3 direction)
         {
-            var projectile = Object.Instantiate(_data.Prefab, from, Quaternion.identity);
+            Projectile projectile = Object.Instantiate(_data.Prefab, from, Quaternion.identity);
 
             projectile.Init(_data);
             projectile.Launch(direction);
