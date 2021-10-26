@@ -20,14 +20,22 @@ namespace RH.Game.Player
         private float _airControlPercent => _settings.AirControlPercent;
         private float _time => _settings.JumpTime;
         private bool _isGrounded => _collisionDetector.IsCollide;
+        private float _moveDirection => InputService.MoveDirection.x;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _collisionDetector = GetComponent<CollisionDetector>();
+
+            InputService.OnJump += TryJump;
         }
 
-        public void Jump()
+        private void OnDestroy()
+        {
+            InputService.OnJump -= TryJump;
+        }
+
+        private void TryJump()
         {
             if (_isGrounded)
                 StartCoroutine(PerformJump());
@@ -41,9 +49,9 @@ namespace RH.Game.Player
             float jumpTime = 0f;
             Vector2 startPoint = transform.position;
             bool hasStartCollisions = true;
-            float startDirection = MoveInput.Direction.x;
+            float startDirection = _moveDirection;
 
-            while (inAir())
+            while (inAir(hasStartCollisions))
             {
                 Vector2 position = CalculatePosition(jumpTime, startPoint, startDirection);
 
@@ -59,9 +67,9 @@ namespace RH.Game.Player
 
             _rigidbody.velocity = Vector2.zero;
             IsJumping = false;
+
             yield break;
 
-            bool inAir() => !_isGrounded || (_isGrounded && hasStartCollisions);
         }
 
         private Vector2 CalculatePosition(float jumpTime, Vector2 startPoint, float startDirection)
@@ -71,7 +79,7 @@ namespace RH.Game.Player
 
         private float CalculateHorizontalOffset(float startDirection)
         {
-            var inputCoefficient = Mathf.Lerp(startDirection, MoveInput.Direction.x, _airControlPercent);
+            var inputCoefficient = Mathf.Lerp(startDirection, _moveDirection, _airControlPercent);
             return _speed * Time.fixedDeltaTime * inputCoefficient;
         }
 
@@ -82,5 +90,6 @@ namespace RH.Game.Player
             return startPointY + height;
         }
 
+        private bool inAir(bool hasStartCollisions) => !_isGrounded || (_isGrounded && hasStartCollisions);
     }
 }

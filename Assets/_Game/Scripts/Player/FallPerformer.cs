@@ -13,6 +13,7 @@ namespace RH.Game.Player
 
         private float _speed => PrototypeSettings.Instance.MoveSpeed;
         private float _fallAirControl => PrototypeSettings.Instance.FallAirControlPercent;
+        private float _moveDirection => InputService.MoveDirection.x;
 
         private void Start()
         {
@@ -35,7 +36,7 @@ namespace RH.Game.Player
 
         private float CalculateVelocity()
         {
-            return Mathf.Lerp(_rigidbody.velocity.x, MoveInput.Direction.x * _speed, _fallAirControl);
+            return Mathf.Lerp(_rigidbody.velocity.x, _moveDirection * _speed, _fallAirControl);
         }
     }
 }

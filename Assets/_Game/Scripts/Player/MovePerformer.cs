@@ -19,17 +19,19 @@ namespace RH.Game.Player
             _collisionDetector = GetComponent<CollisionDetector>();
         }
 
-        private void Update()
+        private void Update() => TryMove();
+
+        private void TryMove()
         {
+            if (!_collisionDetector.IsGrounded)
+                return;
+            
             Move();
         }
 
         private void Move()
         {
-            if (!_collisionDetector.IsGrounded)
-                return;
-
-            var direction = MoveInput.Direction;
+            var direction = InputService.MoveDirection;
 
             if (direction.Approximately(Vector2.zero))
                 ClearVelocity();

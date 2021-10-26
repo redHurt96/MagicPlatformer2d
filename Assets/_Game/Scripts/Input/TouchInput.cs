@@ -1,7 +1,7 @@
 using System;
-using Between;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Between;
 
 namespace RH.Game.Input.Tracking
 {
