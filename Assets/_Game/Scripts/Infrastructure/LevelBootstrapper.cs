@@ -12,6 +12,7 @@ namespace RH.Game.Infrastructure
         private void Awake()
         {
             _level = new Level(_settings);
+            FpsIncreaser.Perform();
         }
 
         private void OnDestroy()
