@@ -5,25 +5,25 @@ using RH.Game.Input;
 
 namespace RH.Game.Player
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(CollisionDetector))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(GroundDetector))]
     public class MovePerformer : MonoBehaviour
     {
         private Rigidbody2D _rigidbody;
-        private CollisionDetector _collisionDetector;
+        private GroundDetector _groundDetector;
 
         private float _speed => PrototypeSettings.Instance.MoveSpeed;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _collisionDetector = GetComponent<CollisionDetector>();
+            _groundDetector = GetComponent<GroundDetector>();
         }
 
         private void Update() => TryMove();
 
         private void TryMove()
         {
-            if (!_collisionDetector.IsGrounded)
+            if (!_groundDetector.IsGrounded)
                 return;
             
             Move();
@@ -46,8 +46,7 @@ namespace RH.Game.Player
         
         private void SetVelocity(Vector2 direction)
         {
-            Vector2 offset = direction * _speed;
-            _rigidbody.velocity = offset;
+            _rigidbody.velocity = direction * _speed;
         }
     }
 }

@@ -60,12 +60,11 @@ namespace RH.Game.Player
                 if (!_collisionDetector.IsCollide && hasStartCollisions)
                     hasStartCollisions = false;
 
-                jumpTime += Time.deltaTime;
+                jumpTime += Time.fixedDeltaTime;
 
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
 
-            _rigidbody.velocity = Vector2.zero;
             IsJumping = false;
 
             yield break;

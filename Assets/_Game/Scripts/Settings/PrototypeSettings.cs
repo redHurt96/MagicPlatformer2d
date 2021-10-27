@@ -31,7 +31,7 @@ namespace RH.Game.Settings
         
         [Header("Dev stuff")]
         public bool EnableInputLog;
-        
+
         public static PrototypeSettings Instance { get; private set; }
 
         public void Init()
