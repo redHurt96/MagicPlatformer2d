@@ -23,12 +23,14 @@ namespace RH.Game.Settings
 
         [Header("Fireball spell")] 
         public Projectile.ProjectileData ProjectileData;
+        public float ProjectileInputLenght;
 
         [Header("Shield spell")] 
         public float ShieldLifeTime;
         [AssetsOnly] public Shield ShieldPrefab;
         public float ShieldsLenght;
-        
+        public float ShieldInputLenght;
+
         [Header("Dev stuff")]
         public bool EnableInputLog;
         public bool EnableJumpGizmos;

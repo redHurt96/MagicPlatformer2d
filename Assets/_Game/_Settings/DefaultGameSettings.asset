@@ -55,8 +55,10 @@ MonoBehaviour:
     Damage:
       Value: 1
     Prefab: {fileID: 8068662593764052154, guid: 319a83d3fed558e42a55942bb737a7e4, type: 3}
+  ProjectileInputLenght: 3
   ShieldLifeTime: 2
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
-  ShieldsLenght: 3
+  ShieldsLenght: 5
+  ShieldInputLenght: 2
   EnableInputLog: 0
-  EnableJumpLog: 0
+  EnableJumpGizmos: 0

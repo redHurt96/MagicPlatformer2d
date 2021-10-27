@@ -1,3 +1,4 @@
+using RH.Game.Settings;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,8 +37,16 @@ namespace RH.Game.Spells
         private void InitSpells()
         {
             var spells = new SpellsCollection();
-            spells.AddSpell(SpellType.Projectile, new ProjectileSpell(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
-            spells.AddSpell(SpellType.Shield, new ShieldSpell(new BaseSpell.HasDragCondition(), new BaseSpell.EmptyBehavior()));
+            
+            spells.AddSpell(
+                SpellType.Projectile, 
+                new ProjectileSpell(new BaseSpell.EnoughDragCondition(GameSettings.Instance.ProjectileInputLenght), 
+                new BaseSpell.EmptyBehavior()));
+
+            spells.AddSpell(
+                SpellType.Shield, 
+                new ShieldSpell(new BaseSpell.EnoughDragCondition(GameSettings.Instance.ShieldInputLenght), 
+                new BaseSpell.EmptyBehavior()));
         }
 
         private void CastSpell(List<Vector3> points)
