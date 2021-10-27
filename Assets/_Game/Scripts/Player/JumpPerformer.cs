@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using RH.Game.Settings;
 using RH.Game.Input;
+using TMPro;
 
 namespace RH.Game.Player
 {
@@ -13,6 +14,11 @@ namespace RH.Game.Player
 
         public bool IsJumping { get; private set; }
 
+        private Vector2 _jumpStartPoint;
+        private float _jumpTime = 0f;
+        private bool _hasStartCollisions;
+        private float _startDirection;
+
         private GameSettings _settings => GameSettings.Instance;
         private AnimationCurve _curve => _settings.JumpCurve;
         private float _height => _settings.JumpHeight;
@@ -21,6 +27,7 @@ namespace RH.Game.Player
         private float _time => _settings.JumpTime;
         private bool _isGrounded => _collisionDetector.IsCollide;
         private float _moveDirection => InputService.MoveDirection.x;
+        private float _curveLenghtTime => _curve.keys[^1].time;
 
         private void Start()
         {
@@ -43,37 +50,63 @@ namespace RH.Game.Player
 
         private IEnumerator PerformJump()
         {
-            _rigidbody.velocity = Vector2.zero;
-            IsJumping = true;
+            SetStartValues();
 
-            float jumpTime = 0f;
-            Vector2 startPoint = transform.position;
-            bool hasStartCollisions = true;
-            float startDirection = _moveDirection;
-
-            while (inAir(hasStartCollisions))
+            while (InAir(_hasStartCollisions))
             {
-                Vector2 position = CalculatePosition(jumpTime, startPoint, startDirection);
+                float previousHeight = _rigidbody.position.y;
 
-                _rigidbody.MovePosition(position);
-                
-                if (!_collisionDetector.IsCollide && hasStartCollisions)
-                    hasStartCollisions = false;
-
-                jumpTime += Time.fixedDeltaTime;
+                Move(_jumpStartPoint, _startDirection);
+                UpdateStartCollisionsFlag();
+                IncreaseJumpTime();
 
                 yield return new WaitForFixedUpdate();
+
+                if (JumpCompleted(_jumpTime))
+                {
+                    ApplyFallVelocity(previousHeight);
+                    break;
+                }
             }
 
             IsJumping = false;
 
             yield break;
-
         }
 
-        private Vector2 CalculatePosition(float jumpTime, Vector2 startPoint, float startDirection)
+        private void SetStartValues()
         {
-            return new Vector2(transform.position.x + CalculateHorizontalOffset(startDirection), CalculateVerticalOffset(jumpTime, startPoint.y));
+            IsJumping = true;
+            _jumpStartPoint = _rigidbody.position;
+            _hasStartCollisions = true;
+            _startDirection = _moveDirection;
+            _jumpTime = 0f;
+        }
+
+        private void IncreaseJumpTime()
+        {
+            _jumpTime += Time.fixedDeltaTime;
+        }
+
+        private void UpdateStartCollisionsFlag()
+        {
+            if (!_collisionDetector.IsCollide && _hasStartCollisions)
+                _hasStartCollisions = false;
+        }
+
+        private bool InAir(bool hasStartCollisions) => !_isGrounded || (_isGrounded && hasStartCollisions);
+
+        private bool JumpCompleted(float jumpTime) => jumpTime >= _curveLenghtTime;
+
+        private void Move(Vector2 startPoint, float startDirection)
+        {
+            Vector2 position = CalculatePosition(startPoint, startDirection);
+            _rigidbody.MovePosition(position);
+        }
+
+        private Vector2 CalculatePosition(Vector2 startPoint, float startDirection)
+        {
+            return new Vector2(transform.position.x + CalculateHorizontalOffset(startDirection), CalculateVerticalOffset(startPoint.y));
         }
 
         private float CalculateHorizontalOffset(float startDirection)
@@ -82,13 +115,16 @@ namespace RH.Game.Player
             return _speed * Time.fixedDeltaTime * inputCoefficient;
         }
 
-        private float CalculateVerticalOffset(float jumpTime, float startPointY)
+        private float CalculateVerticalOffset(float startPointY)
         {
-            var curvePoint = _curve.Evaluate(jumpTime / _time);
+            var curvePoint = _curve.Evaluate(_jumpTime);
             var height = curvePoint * _height;
             return startPointY + height;
         }
 
-        private bool inAir(bool hasStartCollisions) => !_isGrounded || (_isGrounded && hasStartCollisions);
+        private void ApplyFallVelocity(float previousHeight)
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, (_rigidbody.position.y - previousHeight) / Time.fixedDeltaTime);
+        }
     }
 }
