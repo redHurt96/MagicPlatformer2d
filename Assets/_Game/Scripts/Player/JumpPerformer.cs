@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using RH.Game.Settings;
 using RH.Game.Input;
-using TMPro;
 
 namespace RH.Game.Player
 {
