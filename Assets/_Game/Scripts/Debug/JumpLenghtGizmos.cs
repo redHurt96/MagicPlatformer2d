@@ -12,7 +12,7 @@ namespace RH.Game.Debugging
 #endif
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             if (PrototypeSettings.Instance == null || !PrototypeSettings.Instance.EnableJumpLog)
                 return;
