@@ -9,7 +9,7 @@ namespace RH.Game.Input
         private void Awake()
         {
 #if !UNITY_EDITOR
-            Destroy(gameObject);
+            Destroy(this);
 #endif
         }
 
