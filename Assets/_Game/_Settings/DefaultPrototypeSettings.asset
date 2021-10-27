@@ -67,4 +67,5 @@ MonoBehaviour:
   ShieldLifeTime: 3
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
   ShieldsLenght: 8
-  EnableInputLog: 1
+  EnableInputLog: 0
+  EnableJumpLog: 1
