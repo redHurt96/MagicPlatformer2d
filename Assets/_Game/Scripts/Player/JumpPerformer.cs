@@ -13,7 +13,7 @@ namespace RH.Game.Player
 
         public bool IsJumping { get; private set; }
 
-        private PrototypeSettings _settings => PrototypeSettings.Instance;
+        private GameSettings _settings => GameSettings.Instance;
         private AnimationCurve _curve => _settings.JumpCurve;
         private float _height => _settings.JumpHeight;
         private float _speed => _settings.MoveSpeed;

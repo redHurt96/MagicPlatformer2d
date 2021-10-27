@@ -11,7 +11,7 @@ namespace RH.Game.Spells
         
         public ProjectileSpell(CastCondition condition, CompleteBehavior behavior) : base(condition, behavior)
         {
-            _spawner = new ProjectileSpawner(PrototypeSettings.Instance.ProjectileData);
+            _spawner = new ProjectileSpawner(GameSettings.Instance.ProjectileData);
         }
 
         protected override void Cast(List<Vector3> points)

@@ -11,8 +11,8 @@ namespace RH.Game.Player
         private JumpPerformer _jumpPerformer;
         private Rigidbody2D _rigidbody;
 
-        private float _speed => PrototypeSettings.Instance.MoveSpeed;
-        private float _fallAirControl => PrototypeSettings.Instance.FallAirControlPercent;
+        private float _speed => GameSettings.Instance.MoveSpeed;
+        private float _fallAirControl => GameSettings.Instance.FallAirControlPercent;
         private float _moveDirection => InputService.MoveDirection.x;
 
         private void Start()

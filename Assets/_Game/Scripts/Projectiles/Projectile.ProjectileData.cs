@@ -12,7 +12,7 @@ namespace RH.Game.Projectiles
             public float Speed;
             public DamageItem Damage;
             
-            [AssetsOnly, Required("Required")]
+            [AssetsOnly]
             public Projectile Prefab;
         }
     }

@@ -12,7 +12,7 @@ namespace Between.SpellsEffects.ShieldSpell
         public Team Team { get; } = Team.Player;
         public float Size => transform.localScale.y;
 
-        private float _lifeTime => PrototypeSettings.Instance.ShieldLifeTime;
+        private float _lifeTime => GameSettings.Instance.ShieldLifeTime;
 
         private void Awake()
         {

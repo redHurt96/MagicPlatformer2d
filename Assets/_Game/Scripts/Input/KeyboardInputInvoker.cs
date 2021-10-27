@@ -8,9 +8,8 @@ namespace RH.Game.Input
 
         private void Awake()
         {
-#if !UNITY_EDITOR
-            Destroy(this);
-#endif
+            if (!Application.isEditor)
+                Destroy(gameObject);
         }
 
         private void Update()

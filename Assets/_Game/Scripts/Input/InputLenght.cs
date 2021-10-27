@@ -38,7 +38,7 @@ namespace RH.Game.Input.Tracking
 
         private void LogLastLenght()
         {
-            if (PrototypeSettings.Instance.EnableInputLog)
+            if (GameSettings.Instance.EnableInputLog)
                 Debug.Log($"Last input lenght = " + LastLenght);
         }
     }

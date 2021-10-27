@@ -11,7 +11,7 @@ namespace RH.Game.Player
         private Rigidbody2D _rigidbody;
         private GroundDetector _groundDetector;
 
-        private float _speed => PrototypeSettings.Instance.MoveSpeed;
+        private float _speed => GameSettings.Instance.MoveSpeed;
 
         private void Start()
         {

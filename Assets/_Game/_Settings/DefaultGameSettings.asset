@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7043a2cba720ced40bdadc722bdd41bd, type: 3}
-  m_Name: DefaultPrototypeSettings
+  m_Script: {fileID: 11500000, guid: 160a28b44769a57499cbda126d4eba98, type: 3}
+  m_Name: DefaultGameSettings
   m_EditorClassIdentifier: 
   MoveSpeed: 10
   JumpCurve:
@@ -19,38 +19,29 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 5.6723833
-      outSlope: 5.6723833
+      inSlope: 4.078801
+      outSlope: 4.078801
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.16801178
+      outWeight: 0.056656897
     - serializedVersion: 3
-      time: 0.50457805
-      value: 0.950798
-      inSlope: 0.050529275
-      outSlope: 0.050529275
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.19208616
-    - serializedVersion: 3
-      time: 0.9947881
-      value: 0.026735827
-      inSlope: -3.0880845
-      outSlope: -3.0880845
+      time: 0.50008625
+      value: 0.9988675
+      inSlope: 0.02860646
+      outSlope: 0.02860646
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.8166084
-      value: -4.305488
-      inSlope: -8.11616
-      outSlope: -8.11616
+      time: 1.4740121
+      value: -2.0045733
+      inSlope: -4.62724
+      outSlope: -4.62724
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.051856786
+      inWeight: 0.077268556
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -60,12 +51,12 @@ MonoBehaviour:
   FallAirControlPercent: 1
   JumpTime: 1
   ProjectileData:
-    Speed: 15
+    Speed: 25
     Damage:
       Value: 1
     Prefab: {fileID: 8068662593764052154, guid: 319a83d3fed558e42a55942bb737a7e4, type: 3}
-  ShieldLifeTime: 3
+  ShieldLifeTime: 2
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
-  ShieldsLenght: 8
+  ShieldsLenght: 3
   EnableInputLog: 0
-  EnableJumpLog: 1
+  EnableJumpLog: 0

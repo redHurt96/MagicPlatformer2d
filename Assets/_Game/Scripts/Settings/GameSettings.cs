@@ -6,7 +6,7 @@ using RH.Game.Projectiles;
 namespace RH.Game.Settings
 {
     [CreateAssetMenu(fileName = "New PrototypeSettings", menuName = "Game/PrototypeSettings", order = 0)]
-    public class PrototypeSettings : ScriptableObject
+    public class GameSettings : ScriptableObject
     {
         #region PLAYER_SETTINGS
 
@@ -33,7 +33,7 @@ namespace RH.Game.Settings
         public bool EnableInputLog;
         public bool EnableJumpLog;
 
-        public static PrototypeSettings Instance { get; private set; }
+        public static GameSettings Instance { get; private set; }
 
         public void Init()
         {

@@ -8,7 +8,7 @@ namespace RH.Game.Debugging
     {
         private void Start()
         {
-            if (!PrototypeSettings.Instance.EnableInputLog)
+            if (!GameSettings.Instance.EnableInputLog)
             {
                 Destroy(this);
             }

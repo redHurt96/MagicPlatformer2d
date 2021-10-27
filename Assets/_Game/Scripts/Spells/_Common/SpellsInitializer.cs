@@ -3,17 +3,34 @@ using UnityEngine;
 
 namespace RH.Game.Spells
 {
-    public class SpellsInitializer : MonoBehaviour
+    public class SpellsInitializer
     {
         private InputTracker _inputTracker;
         
-        private void Start()
+        public void Init()
         {
             InitSpells();
-            
+            InitTracker();
+        }
+
+        public void Dispose()
+        {
+            DisposeTracker();
+            SpellsCollection.DestroyInstance();
+        }
+
+        private void InitTracker()
+        {
             _inputTracker = new InputTracker();
             _inputTracker.Init();
             _inputTracker.DrawComplete += CastSpell;
+        }
+
+        private void DisposeTracker()
+        {
+            _inputTracker.DrawComplete -= CastSpell;
+            _inputTracker.Dispose();
+            _inputTracker = null;
         }
 
         private void InitSpells()
@@ -26,14 +43,6 @@ namespace RH.Game.Spells
         private void CastSpell(List<Vector3> points)
         {
             SpellsCollection.Instance.CastSpell(points);
-        }
-
-        private void OnDestroy()
-        {
-            _inputTracker.DrawComplete -= CastSpell;
-            _inputTracker.Dispose();
-            _inputTracker = null;
-            SpellsCollection.DestroyInstance();
         }
     }
 }
