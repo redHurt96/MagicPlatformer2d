@@ -14,7 +14,7 @@ namespace RH.Game.Debugging
 
         private void OnDrawGizmos()
         {
-            if (GameSettings.Instance == null || !GameSettings.Instance.EnableJumpLog)
+            if (GameSettings.Instance == null || !GameSettings.Instance.EnableJumpGizmos)
                 return;
 
             Gizmos.color = Color.red;

@@ -31,7 +31,7 @@ namespace RH.Game.Settings
         
         [Header("Dev stuff")]
         public bool EnableInputLog;
-        public bool EnableJumpLog;
+        public bool EnableJumpGizmos;
 
         public static GameSettings Instance { get; private set; }
 

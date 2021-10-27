@@ -13,5 +13,10 @@ namespace RH.Game.Infrastructure
         {
             _level = new Level(_settings);
         }
+
+        private void OnDestroy()
+        {
+            _level.Dispose();
+        }
     }
 }
