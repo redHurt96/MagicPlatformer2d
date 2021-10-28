@@ -19,17 +19,7 @@ namespace RH.Game.Input.Tracking
         private Vector2 _pressPosition;
         private Vector2 _previousPosition;
 
-        private bool _underUi
-        {
-            get
-            {
-#if UNITY_ANDROID && !UNITY_EDITOR
-                return EventSystem.current.IsPointerOverGameObject(UnityEngine.Input.GetTouch(0).fingerId);
-#else
-                return EventSystem.current.IsPointerOverGameObject();
-#endif
-            }
-        }
+        private bool _underUi => UnderUiTouchDetector.IsUnderUi;
 
         private void Update()
         {
