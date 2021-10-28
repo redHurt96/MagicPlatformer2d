@@ -13,15 +13,15 @@ namespace RH.Game.Spells
 
         public void Init()
         {
-            TouchInput.Pressed += StartTrack;
-            TouchInput.Dragged += Track;
-            TouchInput.Released += FinishTrack;
+            TouchInputService.Pressed += StartTrack;
+            TouchInputService.Dragged += Track;
+            TouchInputService.Released += FinishTrack;
         }
 
         public void Dispose()
         {
-            TouchInput.Pressed -= StartTrack;
-            TouchInput.Released -= FinishTrack;
+            TouchInputService.Pressed -= StartTrack;
+            TouchInputService.Released -= FinishTrack;
         }
 
         private void StartTrack()
@@ -43,7 +43,7 @@ namespace RH.Game.Spells
 
         private void AddPoint()
         {
-            _drawPoints.Add(TouchInput.WorldPosition);            
+            _drawPoints.Add(TouchInputService.WorldPosition);            
         }
     }
 }

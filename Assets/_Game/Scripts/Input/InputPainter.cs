@@ -12,16 +12,16 @@ namespace RH.Game.Input
 
         private void Start()
         {
-            TouchInput.Pressed += CreatePainter;
-            TouchInput.Dragged += MovePainter;
-            TouchInput.Released += DestroyPainter;
+            TouchInputService.Pressed += CreatePainter;
+            TouchInputService.Dragged += MovePainter;
+            TouchInputService.Released += DestroyPainter;
         }
 
         private void OnDestroy()
         {
-            TouchInput.Pressed -= CreatePainter;
-            TouchInput.Dragged -= MovePainter;
-            TouchInput.Released -= DestroyPainter;
+            TouchInputService.Pressed -= CreatePainter;
+            TouchInputService.Dragged -= MovePainter;
+            TouchInputService.Released -= DestroyPainter;
         }
 
         private void CreatePainter()
@@ -29,13 +29,13 @@ namespace RH.Game.Input
             if (_currentPainter != null)
                 Destroy(_currentPainter.gameObject);
 
-            _currentPainter = Instantiate(_prefab, TouchInput.WorldPosition, Quaternion.identity);
+            _currentPainter = Instantiate(_prefab, TouchInputService.WorldPosition, Quaternion.identity);
         }
 
         private void MovePainter()
         {
             if (_currentPainter != null)
-                _currentPainter.transform.position = TouchInput.WorldPosition;
+                _currentPainter.transform.position = TouchInputService.WorldPosition;
         }
 
         private void DestroyPainter()

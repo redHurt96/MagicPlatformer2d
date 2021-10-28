@@ -8,29 +8,31 @@ namespace RH.Game.Input.Tracking
         public static float LastLenght { get; private set; }
         
         private Vector2 _lastPoint;
+
+        private Vector2 _screenPosition => TouchInputService.ScreenPosition;
         
         private void Start()
         {
-            TouchInput.Pressed += StartTrack;
-            TouchInput.Dragged += CollectPoint;
-            TouchInput.Released += CalculateLenght;
+            TouchInputService.Pressed += StartTrack;
+            TouchInputService.Dragged += CollectPoint;
+            TouchInputService.Released += CalculateLenght;
         }
 
         private void StartTrack()
         {
             LastLenght = 0f;
-            _lastPoint = TouchInput.ScreenPosition;
+            _lastPoint = _screenPosition;
         }
 
         private void CollectPoint()
         {
-            LastLenght += Vector2.Distance(_lastPoint, TouchInput.ScreenPosition);
-            _lastPoint = TouchInput.ScreenPosition;
+            LastLenght += Vector2.Distance(_lastPoint, _screenPosition);
+            _lastPoint = _screenPosition;
         }
 
         private void CalculateLenght()
         {
-            LastLenght += Vector2.Distance(_lastPoint, TouchInput.ScreenPosition);
+            LastLenght += Vector2.Distance(_lastPoint, _screenPosition);
             LastLenght /= Screen.width;
             
             LogLastLenght();

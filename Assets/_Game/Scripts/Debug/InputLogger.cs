@@ -14,17 +14,17 @@ namespace RH.Game.Debugging
             }
             else
             {
-                TouchInput.Pressed += PrintPress;
-                TouchInput.Dragged += PrintDrag;
-                TouchInput.Released += PrintRelease;
+                TouchInputService.Pressed += PrintPress;
+                TouchInputService.Dragged += PrintDrag;
+                TouchInputService.Released += PrintRelease;
             }
         }
 
         private void OnDestroy()
         {
-            TouchInput.Pressed -= PrintPress;
-            TouchInput.Dragged -= PrintDrag;
-            TouchInput.Released -= PrintRelease;
+            TouchInputService.Pressed -= PrintPress;
+            TouchInputService.Dragged -= PrintDrag;
+            TouchInputService.Released -= PrintRelease;
         }
 
         private void PrintPress() => Debug.Log("Press");

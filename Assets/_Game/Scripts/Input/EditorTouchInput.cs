@@ -1,18 +1,11 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Between;
 
 namespace RH.Game.Input.Tracking
 {
-    public class TouchInput : MonoBehaviour
+    public class EditorTouchInput : MonoBehaviour, ITouchInputInvoker
     {
-        public static event Action Pressed;
-        public static event Action Dragged;
-        public static event Action Released;
-
-        public static Vector2 ScreenPosition => _mousePosition;
-        public static Vector3 WorldPosition => GameCamera.ScreenToWorldPoint(ScreenPosition);
         private static Vector2 _mousePosition => UnityEngine.Input.mousePosition;
 
         private InputState _state = InputState.None;
@@ -20,20 +13,27 @@ namespace RH.Game.Input.Tracking
         private Vector2 _previousPosition;
 
         private bool _underUi => UnderUiTouchDetector.IsUnderUi;
+        private bool _isStartPress => UnityEngine.Input.GetMouseButtonDown(0) && _state == InputState.None && !_underUi;
+        private bool _isStartDrag => UnityEngine.Input.GetMouseButton(0) && _state == InputState.Press && _mousePosition != _pressPosition;
+        private bool _isDrag => UnityEngine.Input.GetMouseButton(0) && _state == InputState.Drag && _mousePosition != _previousPosition;
+        private bool _isRelease => _state != InputState.None && !UnityEngine.Input.GetMouseButton(0);
+
+        private void Awake()
+        {
+            if (!Application.isEditor)
+                Destroy(gameObject);
+        }
 
         private void Update()
         {
-            if (UnityEngine.Input.GetMouseButtonDown(0) && _state == InputState.None && !_underUi)
+            if (_isStartPress)
                 PerformPress();
-            else if (IsStartDrag())
+            else if (_isStartDrag)
                 PerformStartDrag();
-            else if (IsDrag())
+            else if (_isDrag)
                 PerformDrag();
-            else if (_state != InputState.None && !UnityEngine.Input.GetMouseButton(0))
+            else if (_isRelease)
                 PerformRelease();
-
-            bool IsStartDrag() => UnityEngine.Input.GetMouseButton(0) && _state == InputState.Press && _mousePosition != _pressPosition;
-            bool IsDrag() => UnityEngine.Input.GetMouseButton(0) && _state == InputState.Drag && _mousePosition != _previousPosition;
         }
 
         private void PerformPress()
@@ -41,26 +41,28 @@ namespace RH.Game.Input.Tracking
             _pressPosition = _mousePosition;
             _state = InputState.Press;
             
-            Pressed?.Invoke();
+            TouchInputService.InvokePressedEvent(this);
         }
 
         private void PerformStartDrag()
         {
             _previousPosition = _mousePosition;
             _state = InputState.Drag;
-            Dragged?.Invoke();
+            
+            TouchInputService.InvokeDraggedEvent(this);
         }
 
         private void PerformDrag()
         {
             _previousPosition = _mousePosition;
-            Dragged?.Invoke();
+            
+            TouchInputService.InvokeDraggedEvent(this);
         }
 
         private void PerformRelease()
         {
             _state = InputState.None;
-            Released?.Invoke();
+            TouchInputService.InvokeReleasedEvent(this);
         }
 
         private enum InputState
