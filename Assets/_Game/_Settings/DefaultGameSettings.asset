@@ -60,5 +60,5 @@ MonoBehaviour:
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
   ShieldsLenght: 5
   ShieldInputLenght: 2
-  EnableInputLog: 0
+  EnableInputLog: 1
   EnableJumpGizmos: 0

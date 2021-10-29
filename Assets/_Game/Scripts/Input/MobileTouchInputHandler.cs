@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Between;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace RH.Game.Input.Tracking
@@ -6,26 +7,20 @@ namespace RH.Game.Input.Tracking
     public class MobileTouchInputHandler : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler,
         ITouchInputHandler
     {
-        // private void Awake()
-        // {
-        //     if (Application.isEditor)
-        //         Destroy(gameObject);
-        // }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            TouchInputService.InvokePressedEvent(this);
+            TouchInputService.InvokePressedEvent(GameCamera.ScreenToWorldPoint(eventData.position), this);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            TouchInputService.InvokeDraggedEvent(this);
-
+            TouchInputService.InvokeDraggedEvent(GameCamera.ScreenToWorldPoint(eventData.position), this);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            TouchInputService.InvokeReleasedEvent(this);
+            TouchInputService.InvokeReleasedEvent(GameCamera.ScreenToWorldPoint(eventData.position), this);
         }
     }
 }

@@ -6,17 +6,12 @@ namespace RH.Game.Input.Tracking
 {
     public static class TouchInputService
     {
-        public static event Action Pressed;
-        public static event Action Dragged;
-        public static event Action Released;
+        public static event Action<Vector2> Pressed;
+        public static event Action<Vector2> Dragged;
+        public static event Action<Vector2> Released;
 
-        public static Vector2 ScreenPosition => UnityEngine.Input.mousePosition;
-        public static Vector3 WorldPosition => GameCamera.ScreenToWorldPoint(ScreenPosition);
-
-        public static void InvokePressedEvent(ITouchInputHandler by) => Pressed?.Invoke();
-        
-        public static void InvokeDraggedEvent(ITouchInputHandler by) => Dragged?.Invoke();
-        
-        public static void InvokeReleasedEvent(ITouchInputHandler by) => Released?.Invoke();
+        public static void InvokePressedEvent(Vector2 where, ITouchInputHandler by) => Pressed?.Invoke(where);
+        public static void InvokeDraggedEvent(Vector2 where, ITouchInputHandler by) => Dragged?.Invoke(where);
+        public static void InvokeReleasedEvent(Vector2 where, ITouchInputHandler by) => Released?.Invoke(where);
     }
 }

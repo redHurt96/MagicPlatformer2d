@@ -1,6 +1,7 @@
 using RH.Game.Input.Tracking;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Between;
 
 namespace RH.Game.Input
 {
@@ -24,21 +25,21 @@ namespace RH.Game.Input
             TouchInputService.Released -= DestroyPainter;
         }
 
-        private void CreatePainter()
+        private void CreatePainter(Vector2 point)
         {
             if (_currentPainter != null)
                 Destroy(_currentPainter.gameObject);
 
-            _currentPainter = Instantiate(_prefab, TouchInputService.WorldPosition, Quaternion.identity);
+            _currentPainter = Instantiate(_prefab, point, Quaternion.identity);
         }
 
-        private void MovePainter()
+        private void MovePainter(Vector2 point)
         {
             if (_currentPainter != null)
-                _currentPainter.transform.position = TouchInputService.WorldPosition;
+                _currentPainter.transform.position = point;
         }
 
-        private void DestroyPainter()
+        private void DestroyPainter(Vector2 point)
         {
             if (_currentPainter != null)
                 Destroy(_currentPainter.gameObject);

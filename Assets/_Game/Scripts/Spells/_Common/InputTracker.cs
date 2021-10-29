@@ -21,29 +21,30 @@ namespace RH.Game.Spells
         public void Dispose()
         {
             TouchInputService.Pressed -= StartTrack;
+            TouchInputService.Dragged -= Track;
             TouchInputService.Released -= FinishTrack;
         }
 
-        private void StartTrack()
+        private void StartTrack(Vector2 point)
         {
             _drawPoints = new List<Vector3>();
-            AddPoint();
+            AddPoint(point);
         }
 
-        private void Track()
+        private void Track(Vector2 point)
         {
-            AddPoint();
+            AddPoint(point);
         }
 
-        private void FinishTrack()
+        private void FinishTrack(Vector2 point)
         {
-            AddPoint();
+            AddPoint(point);
             DrawComplete?.Invoke(_drawPoints);
         }
 
-        private void AddPoint()
+        private void AddPoint(Vector2 point)
         {
-            _drawPoints.Add(TouchInputService.WorldPosition);            
+            _drawPoints.Add(point);            
         }
     }
 }

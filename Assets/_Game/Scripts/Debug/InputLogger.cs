@@ -10,7 +10,7 @@ namespace RH.Game.Debugging
         {
             if (!GameSettings.Instance.EnableInputLog)
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
             else
             {
@@ -27,8 +27,8 @@ namespace RH.Game.Debugging
             TouchInputService.Released -= PrintRelease;
         }
 
-        private void PrintPress() => Debug.Log("Press");
-        private void PrintDrag() => Debug.Log("Drag");
-        private void PrintRelease() => Debug.Log("Release");
+        private void PrintPress(Vector2 point) => Debug.Log("Press at " + point);
+        private void PrintDrag(Vector2 point) => Debug.Log("Drag at " + point);
+        private void PrintRelease(Vector2 point) => Debug.Log("Release at" + point);
     }
 }
