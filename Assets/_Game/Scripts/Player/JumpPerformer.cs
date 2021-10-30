@@ -110,8 +110,15 @@ namespace RH.Game.Player
 
         private float CalculateHorizontalOffset(float startDirection)
         {
-            var inputCoefficient = Mathf.Lerp(startDirection, _moveDirection, _airControlPercent);
+            float inputCoefficient = startDirection;
+
+            if (NeedChangeDirection())
+                inputCoefficient = Mathf.Lerp(startDirection, _moveDirection, _airControlPercent);
+
             return _speed * Time.fixedDeltaTime * inputCoefficient;
+
+            bool NeedChangeDirection() => GameSettings.Instance.JumpMovementType == JumpMovementType.FollowZeroDirection || IsMoveInAir();
+            bool IsMoveInAir() => Mathf.Sign(_moveDirection) != Mathf.Sign(startDirection) && !Mathf.Approximately(_moveDirection, 0f);
         }
 
         private float CalculateVerticalOffset(float startPointY)

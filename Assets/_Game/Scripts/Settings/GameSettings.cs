@@ -8,8 +8,6 @@ namespace RH.Game.Settings
     [CreateAssetMenu(fileName = "New PrototypeSettings", menuName = "Game/PrototypeSettings", order = 0)]
     public class GameSettings : ScriptableObject
     {
-        #region PLAYER_SETTINGS
-
         [Header("Movement settings")]
 
         public float MoveSpeed;
@@ -18,8 +16,7 @@ namespace RH.Game.Settings
         [Range(0,1)] public float AirControlPercent;
         [Range(0,1)] public float FallAirControlPercent;
         public float JumpTime;
-
-        #endregion
+        public JumpMovementType JumpMovementType;
 
         [Header("Fireball spell")] 
         public Projectile.ProjectileData ProjectileData;
