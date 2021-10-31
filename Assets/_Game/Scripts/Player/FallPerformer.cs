@@ -13,7 +13,7 @@ namespace RH.Game.Player
 
         private float _speed => GameSettings.Instance.MoveSpeed;
         private float _fallAirControl => GameSettings.Instance.FallAirControlPercent;
-        private float _moveDirection => InputService.MoveDirection.x;
+        private float _moveDirection => MovementInputService.MoveDirection.x;
 
         private void Start()
         {

@@ -3,7 +3,7 @@ using RH.Game.Input;
 
 namespace RH.Game.UI
 {
-    public class MoveButton : BaseHoldButton, IInputServiceInvoker
+    public class MoveButton : BaseHoldButton, IMovementInputServiceHandler
     {
         [SerializeField] private Direction _direction;
 
@@ -11,12 +11,12 @@ namespace RH.Game.UI
 
         protected override void PerformOnHold()
         {
-            InputService.SetDirection(_inputDirection, this);
+            MovementInputService.SetDirection(_inputDirection, this);
         }
 
         protected override void PerformOnRelease()
         {
-            InputService.SetDirection(0f, this);
+            MovementInputService.SetDirection(0f, this);
         }
 
         private enum Direction

@@ -31,7 +31,7 @@ namespace RH.Game.Player
 
         private void Move()
         {
-            var direction = InputService.MoveDirection;
+            var direction = MovementInputService.MoveDirection;
 
             if (direction.Approximately(Vector2.zero))
                 ClearVelocity();

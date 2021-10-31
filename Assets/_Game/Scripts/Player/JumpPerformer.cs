@@ -25,7 +25,7 @@ namespace RH.Game.Player
         private float _airControlPercent => _settings.AirControlPercent;
         private float _time => _settings.JumpTime;
         private bool _isGrounded => _collisionDetector.IsCollide;
-        private float _moveDirection => InputService.MoveDirection.x;
+        private float _moveDirection => MovementInputService.MoveDirection.x;
         private float _curveLenghtTime => _curve.keys[^1].time;
 
         private void Start()
@@ -33,12 +33,12 @@ namespace RH.Game.Player
             _rigidbody = GetComponent<Rigidbody2D>();
             _collisionDetector = GetComponent<CollisionDetector>();
 
-            InputService.OnJump += TryJump;
+            MovementInputService.OnJump += TryJump;
         }
 
         private void OnDestroy()
         {
-            InputService.OnJump -= TryJump;
+            MovementInputService.OnJump -= TryJump;
         }
 
         private void TryJump()
@@ -118,7 +118,8 @@ namespace RH.Game.Player
             return _speed * Time.fixedDeltaTime * inputCoefficient;
 
             bool NeedChangeDirection() => GameSettings.Instance.JumpMovementType == JumpMovementType.FollowZeroDirection || IsMoveInAir();
-            bool IsMoveInAir() => Mathf.Sign(_moveDirection) != Mathf.Sign(startDirection) && !Mathf.Approximately(_moveDirection, 0f);
+            bool IsMoveInAir() => (Mathf.Sign(_moveDirection) != Mathf.Sign(startDirection) && !Mathf.Approximately(_moveDirection, 0f)) 
+                || Mathf.Approximately(startDirection, 0f) && _moveDirection > 0f;
         }
 
         private float CalculateVerticalOffset(float startPointY)

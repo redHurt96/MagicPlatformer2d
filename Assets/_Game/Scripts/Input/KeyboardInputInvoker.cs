@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RH.Game.Input
 {
-    public class KeyboardInputInvoker : MonoBehaviour, IInputServiceInvoker
+    public class KeyboardInputInvoker : MonoBehaviour, IMovementInputServiceHandler
     {
         private const string AXIS_NAME = "Horizontal";
 
@@ -21,13 +21,13 @@ namespace RH.Game.Input
         private void UpdateMoveDirection()
         {
             var axis = UnityEngine.Input.GetAxis(AXIS_NAME);
-            InputService.SetDirection(axis, this);
+            MovementInputService.SetDirection(axis, this);
         }
 
         private void UpdateJumpInput()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
-                InputService.Jump(this);
+                MovementInputService.Jump(this);
         }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace RH.Game.UI
 {
-    public class JumpButton : BaseButton, IInputServiceInvoker
+    public class JumpButton : BaseButton, IMovementInputServiceHandler
     {
         protected override void PerformOnClick()
         {
-            InputService.Jump(this);
+            MovementInputService.Jump(this);
         }
     }
 }
