@@ -1,4 +1,3 @@
-using SimpleInputNamespace;
 using RH.Game.Input;
 
 namespace RH.Game.UI
