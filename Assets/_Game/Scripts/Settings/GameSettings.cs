@@ -2,6 +2,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Between.SpellsEffects.ShieldSpell;
 using RH.Game.Projectiles;
+using RH.Game.Infrastructure;
 
 namespace RH.Game.Settings
 {
@@ -27,6 +28,9 @@ namespace RH.Game.Settings
         [AssetsOnly] public Shield ShieldPrefab;
         public float ShieldsLenght;
         public float ShieldInputLenght;
+
+        [Header("Input UI")]
+        public InputUiCreator.InputType MoveUiType;
 
         [Header("Dev stuff")]
         public bool EnableInputLog;

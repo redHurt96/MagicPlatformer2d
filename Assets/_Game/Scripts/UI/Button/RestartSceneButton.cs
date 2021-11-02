@@ -6,7 +6,7 @@ namespace RH.Game.UI
     {
         protected override void PerformOnClick()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

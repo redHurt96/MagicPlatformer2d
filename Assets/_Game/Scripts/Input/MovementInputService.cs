@@ -9,6 +9,8 @@ namespace RH.Game.Input
 
         public static Vector2 MoveDirection { get; private set; }
         public static bool HasInput { get; private set; }
+        
+        public static Vector2 RawMoveDirection => Mathf.Approximately(MoveDirection.x, 0f) ? MoveDirection : new Vector2(Mathf.Sign(MoveDirection.x), MoveDirection.y);
 
         public static void SetDirection(float direction, IMovementInputServiceHandler by)
         {

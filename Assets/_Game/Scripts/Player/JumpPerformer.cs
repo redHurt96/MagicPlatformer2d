@@ -17,6 +17,7 @@ namespace RH.Game.Player
         private float _jumpTime = 0f;
         private bool _hasStartCollisions;
         private float _startDirection;
+        private Coroutine _jumpCoroutine;
 
         private GameSettings _settings => GameSettings.Instance;
         private AnimationCurve _curve => _settings.JumpCurve;
@@ -27,6 +28,8 @@ namespace RH.Game.Player
         private bool _isGrounded => _collisionDetector.IsCollide;
         private float _moveDirection => MovementInputService.MoveDirection.x;
         private float _curveLenghtTime => _curve.keys[^1].time;
+
+        private bool _hasJump => _jumpCoroutine != null;
 
         private void Start()
         {
@@ -43,8 +46,8 @@ namespace RH.Game.Player
 
         private void TryJump()
         {
-            if (_isGrounded)
-                StartCoroutine(PerformJump());
+            if (_isGrounded && !_hasJump)
+                _jumpCoroutine = StartCoroutine(PerformJump());
         }
 
         private IEnumerator PerformJump()
@@ -69,6 +72,7 @@ namespace RH.Game.Player
             }
 
             IsJumping = false;
+            _jumpCoroutine = null;
 
             yield break;
         }
