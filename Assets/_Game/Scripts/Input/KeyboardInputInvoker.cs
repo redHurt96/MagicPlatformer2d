@@ -20,7 +20,7 @@ namespace RH.Game.Input
 
         private void UpdateMoveDirection()
         {
-            var axis = UnityEngine.Input.GetAxis(AXIS_NAME);
+            var axis = UnityEngine.Input.GetAxisRaw(AXIS_NAME);
             MovementInputService.SetDirection(axis, this);
         }
 

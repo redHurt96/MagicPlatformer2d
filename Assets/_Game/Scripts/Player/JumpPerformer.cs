@@ -124,7 +124,7 @@ namespace RH.Game.Player
 
         private float CalculateVerticalOffset(float startPointY)
         {
-            var curvePoint = _curve.Evaluate(_jumpTime);
+            var curvePoint = _curve.Evaluate(_jumpTime / _time);
             var height = curvePoint * _height;
             return startPointY + height;
         }
