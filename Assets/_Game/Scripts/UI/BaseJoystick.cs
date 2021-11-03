@@ -7,7 +7,6 @@ namespace RH.Game.UI
 {
     public abstract class BaseJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IMovementInputServiceHandler
     {
-
         public event Action<Vector2> Setted;
         public event Action<Vector2> Moved;
         public event Action<Vector2> Removed;
@@ -35,15 +34,22 @@ namespace RH.Game.UI
         }
 
         protected abstract void PerformOnDrag(Vector2 toPosition);
+        protected virtual void PerformOnStop() { }
 
-        protected void SendMove(Vector2 toPosition)
+        protected bool TryMove(Vector2 toPosition)
         {
             var offset = toPosition - _beginPosition;
 
             if (LessThenDragRadius(offset))
+            {
                 Stop();
+                return false;
+            }
             else
+            {
                 MovementInputService.SetDirection(offset.normalized.x, this);
+                return true;
+            }
         }
 
         private bool LessThenDragRadius(Vector2 offset)
@@ -52,6 +58,7 @@ namespace RH.Game.UI
         private void Stop()
         {
             MovementInputService.SetDirection(0f, this);
+            PerformOnStop();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace RH.Game.UI
     {
         protected override void PerformOnDrag(Vector2 toPosition)
         {
-            SendMove(toPosition);
+            TryMove(toPosition);
         }
     }
 }

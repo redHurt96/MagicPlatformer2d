@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a5e181890ee0d4ea83aeb0603a1948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dragTheshhold: 50
+  _dragTheshhold: 15
 --- !u!114 &2850409576330579607
 MonoBehaviour:
   m_ObjectHideFlags: 0

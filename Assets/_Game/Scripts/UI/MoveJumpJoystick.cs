@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using RH.Game.Input;
-using System.IO;
 
 namespace RH.Game.UI
 {
+
     public class MoveJumpJoystick : BaseJoystick
     {
+        public event Action OnMove;
+        public event Action OnJump;
+        public event Action OnStop;
+
         [SerializeField] private float _verticalJumpAngle;
         [SerializeField] private float _jumpAngle;
         [SerializeField] private float _jumpRadius;
@@ -14,16 +19,23 @@ namespace RH.Game.UI
 
         protected override void PerformOnDrag(Vector2 toPosition)
         {
-            SendMove(toPosition);
-            TryJump(toPosition);
+            if (TryJump(toPosition))
+                OnJump?.Invoke();
+            else if (TryMove(toPosition))
+                OnMove?.Invoke();
         }
 
-        private void TryJump(Vector2 toPosition)
+        protected override void PerformOnStop()
+        {
+            OnStop?.Invoke();
+        }
+
+        private bool TryJump(Vector2 toPosition)
         {
             var offset = (toPosition - _beginPosition);
 
             if (LessThenJumpRadius(offset))
-                return;
+                return false;
 
             offset.Normalize();
 
@@ -31,7 +43,11 @@ namespace RH.Game.UI
             {
                 SetJumpDirection(offset);
                 MovementInputService.Jump(this);
+
+                return true;
             }
+
+            return false;
         }
 
         private void SetJumpDirection(Vector2 offset)
