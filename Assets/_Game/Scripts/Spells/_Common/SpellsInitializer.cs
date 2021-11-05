@@ -1,23 +1,28 @@
-using RH.Game.Settings;
 using System.Collections.Generic;
 using UnityEngine;
+using RH.Game.Settings;
 
 namespace RH.Game.Spells
 {
     public class SpellsInitializer
     {
         private InputTracker _inputTracker;
+        private SpellsBarCreator _spellsBarCreator;
         
-        public void Init()
+        public void Init(Transform canvas)
         {
-            InitSpells();
+            SpellsCollection.CastType castType = GameSettings.Instance.CastType;
+
+            InitSpells(castType);
             InitTracker();
+            TryCreateBar(castType, canvas);
         }
 
         public void Dispose()
         {
             DisposeTracker();
             SpellsCollection.DestroyInstance();
+            _spellsBarCreator?.Dispose();
         }
 
         private void InitTracker()
@@ -27,6 +32,15 @@ namespace RH.Game.Spells
             _inputTracker.DrawComplete += CastSpell;
         }
 
+        private void TryCreateBar(SpellsCollection.CastType castType, Transform canvas)
+        {
+            if (castType != SpellsCollection.CastType.SpellsBar)
+                return;
+
+            _spellsBarCreator = new SpellsBarCreator(canvas);
+            _spellsBarCreator.Execute();
+        }
+
         private void DisposeTracker()
         {
             _inputTracker.DrawComplete -= CastSpell;
@@ -34,9 +48,9 @@ namespace RH.Game.Spells
             _inputTracker = null;
         }
 
-        private void InitSpells()
+        private void InitSpells(SpellsCollection.CastType castType)
         {
-            var spells = new SpellsCollection();
+            var spells = new SpellsCollection(castType);
             
             spells.AddSpell(
                 SpellType.Projectile, 

@@ -11,8 +11,15 @@ namespace RH.Game.Spells
 
         private Dictionary<SpellType, BaseSpell> _spells = new Dictionary<SpellType, BaseSpell>();
 
+        private readonly CastType _castType;
+
         private BaseSpell _currentSpell => _spells[CurrentSpellType];
-        
+
+        public SpellsCollection(CastType castType)
+        {
+            _castType = castType;
+        }
+
         public void AddSpell(SpellType type, BaseSpell spell)
         {
             if (_spells.ContainsKey(type))
@@ -28,7 +35,32 @@ namespace RH.Game.Spells
 
         public void CastSpell(List<Vector3> drawPoints)
         {
-            _currentSpell.TryCast(drawPoints);
+            switch (_castType)
+            {
+                case CastType.SpellsBar:
+                    _currentSpell.TryCast(drawPoints);
+                    break;
+                case CastType.CastIfCan:
+                    CastIfCan(drawPoints);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void CastIfCan(List<Vector3> drawPoints)
+        {
+            foreach (KeyValuePair<SpellType, BaseSpell> pair in _spells)
+            {
+                if (!pair.Value.TryCast(drawPoints))
+                    break;
+            }
+        }
+
+        public enum CastType
+        {
+            SpellsBar = 0,
+            CastIfCan
         }
     }
 }

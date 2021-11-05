@@ -1,4 +1,5 @@
-﻿using RH.Game.Settings;
+﻿using UnityEngine;
+using RH.Game.Settings;
 using RH.Game.Spells;
 
 namespace RH.Game.Infrastructure
@@ -7,12 +8,12 @@ namespace RH.Game.Infrastructure
     {
         private readonly SpellsInitializer _spellsInitializer;
 
-        public Level(GameSettings settings)
+        public Level(GameSettings settings, Transform canvas)
         {
             settings.Init();
 
             _spellsInitializer = new SpellsInitializer();
-            _spellsInitializer.Init();
+            _spellsInitializer.Init(canvas);
         }
 
         public void Dispose()

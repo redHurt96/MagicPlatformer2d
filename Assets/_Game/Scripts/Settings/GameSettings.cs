@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using Between.SpellsEffects.ShieldSpell;
 using RH.Game.Projectiles;
 using RH.Game.Infrastructure;
+using RH.Game.Spells;
 
 namespace RH.Game.Settings
 {
@@ -18,6 +19,9 @@ namespace RH.Game.Settings
         [Range(0,1)] public float FallAirControlPercent;
         public float JumpTime;
         public JumpMovementType JumpMovementType;
+
+        [Header("Spells")]
+        public SpellsCollection.CastType CastType;
 
         [Header("Fireball spell")] 
         public Projectile.ProjectileData ProjectileData;

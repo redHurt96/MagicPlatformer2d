@@ -4,7 +4,6 @@ using RH.Game.Input;
 
 namespace RH.Game.UI
 {
-
     public class MoveJumpJoystick : BaseJoystick
     {
         public event Action OnMove;

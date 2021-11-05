@@ -14,13 +14,15 @@ namespace RH.Game.Spells
             completeBehavior = behavior;
         }
 
-        public void TryCast(List<Vector3> points)
+        public bool TryCast(List<Vector3> points)
         {
             if (!CanCast(points))
-                return;
+                return false;
             
             Cast(points);
             completeBehavior.Apply();
+
+            return true;
         }
 
         protected abstract void Cast(List<Vector3> points);

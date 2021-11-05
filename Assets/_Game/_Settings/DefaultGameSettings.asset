@@ -51,6 +51,7 @@ MonoBehaviour:
   FallAirControlPercent: 1
   JumpTime: 1
   JumpMovementType: 1
+  CastType: 1
   ProjectileData:
     Speed: 25
     Damage:
