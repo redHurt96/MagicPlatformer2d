@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed4f10996a281645b39ade5aff80da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dragTheshhold: 30
+  _dragTheshhold: 25
   _verticalJumpAngle: 10
   _jumpAngle: 45
   _jumpRadius: 75
