@@ -9,7 +9,7 @@ namespace RH.Game.Player
     public class JumpPerformer : MonoBehaviour
     {
         private Rigidbody2D _rigidbody;
-        private CollisionDetector _collisionDetector;
+        private GroundDetector _groundDetector;
 
         public bool IsJumping { get; private set; }
 
@@ -25,7 +25,7 @@ namespace RH.Game.Player
         private float _speed => _settings.MoveSpeed;
         private float _airControlPercent => _settings.AirControlPercent;
         private float _time => _settings.JumpTime;
-        private bool _isGrounded => _collisionDetector.IsCollide;
+        private bool _isGrounded => _groundDetector.IsGrounded;
         private float _moveDirection => MovementInputService.MoveDirection.x;
         private float _curveLenghtTime => _curve.keys[^1].time;
 
@@ -34,7 +34,7 @@ namespace RH.Game.Player
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _collisionDetector = GetComponent<CollisionDetector>();
+            _groundDetector = GetComponent<GroundDetector>();
 
             MovementInputService.OnJump += TryJump;
         }
@@ -93,7 +93,7 @@ namespace RH.Game.Player
 
         private void UpdateStartCollisionsFlag()
         {
-            if (!_collisionDetector.IsCollide && _hasStartCollisions)
+            if (!_groundDetector.IsGrounded && _hasStartCollisions)
                 _hasStartCollisions = false;
         }
 

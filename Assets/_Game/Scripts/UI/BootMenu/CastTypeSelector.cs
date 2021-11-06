@@ -14,5 +14,10 @@ namespace RH.Game.UI
         {
             _gameSettings.CastType = _castType;
         }
+
+        private void Update()
+        {
+            _button.interactable = _gameSettings.CastType != _castType;
+        }
     }
 }
