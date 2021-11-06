@@ -1,5 +1,6 @@
-﻿using Between.Interfaces;
+﻿using System.Collections;
 using UnityEngine;
+using Between.Interfaces;
 
 namespace RH.Game.Projectiles
 {
@@ -13,6 +14,8 @@ namespace RH.Game.Projectiles
         {
             _data = data;
             _rigidbody2D = GetComponent<Rigidbody2D>();
+
+            StartCoroutine(DelayedDestroy());
         }
 
         public void Launch(Vector3 direction)
@@ -25,7 +28,17 @@ namespace RH.Game.Projectiles
             if (other.TryGetComponent<IDamagable>(out var damagable))
                 damagable.ApplyDamage(_data.Damage);
 
-            Destroy(gameObject);
+            Destroy();
         }
+
+        private IEnumerator DelayedDestroy()
+        {
+            yield return new WaitForSeconds(_data.LifeTime);
+
+            if (this != null)
+                Destroy();
+        }
+
+        private void Destroy() => Destroy(gameObject);
     }
 }

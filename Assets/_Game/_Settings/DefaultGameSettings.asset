@@ -56,6 +56,7 @@ MonoBehaviour:
     Speed: 25
     Damage:
       Value: 1
+    LifeTime: 3
     Prefab: {fileID: 8068662593764052154, guid: 319a83d3fed558e42a55942bb737a7e4, type: 3}
   ProjectileInputLenght: 3
   ShieldLifeTime: 2

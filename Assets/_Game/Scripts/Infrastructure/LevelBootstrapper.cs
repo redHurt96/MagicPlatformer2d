@@ -7,12 +7,13 @@ namespace RH.Game.Infrastructure
     {
         [SerializeField] private GameSettings _settings;
         [SerializeField] private Transform _canvas;
+        [SerializeField] private Transform _player;
 
         private Level _level;
 
         private void Awake()
         {
-            _level = new Level(_settings, _canvas);
+            _level = new Level(_settings, _canvas, _player);
             FpsIncreaser.Perform();
             CreateMoveUi();
         }

@@ -52,7 +52,7 @@ namespace RH.Game.Spells
         {
             foreach (KeyValuePair<SpellType, BaseSpell> pair in _spells)
             {
-                if (!pair.Value.TryCast(drawPoints))
+                if (pair.Value.TryCast(drawPoints))
                     break;
             }
         }

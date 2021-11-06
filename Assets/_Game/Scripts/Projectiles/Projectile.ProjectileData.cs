@@ -11,6 +11,7 @@ namespace RH.Game.Projectiles
         {
             public float Speed;
             public DamageItem Damage;
+            public float LifeTime;
             
             [AssetsOnly]
             public Projectile Prefab;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RH.Game.Infrastructure;
 using RH.Game.Projectiles;
 using RH.Game.Settings;
 using UnityEngine;
@@ -16,7 +17,20 @@ namespace RH.Game.Spells
 
         protected override void Cast(List<Vector3> points)
         {
-            var direction = (points[^1] - points[0]).normalized;
+            Vector3 direction = default;
+
+            switch (GameSettings.Instance.CastType)
+            {
+                case SpellsCollection.CastType.SpellsBar:
+                    direction = (points[^1] - points[0]).normalized;
+                    break;
+                case SpellsCollection.CastType.CastIfCan:
+                    direction = (points[^1] - Level.Player.position).normalized;
+                    break;
+                default:
+                    break;
+            }
+            
             _spawner.Spawn(points[0], direction);
         }
     }

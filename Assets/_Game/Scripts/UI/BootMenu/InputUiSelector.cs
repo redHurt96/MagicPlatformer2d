@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RH.Game.Infrastructure;
 using RH.Game.Settings;
@@ -22,7 +21,6 @@ namespace RH.Game.InputUiSelecting
         private void PerformOnClick()
         {
             _gameSettings.MoveUiType = _type;
-            SceneManager.LoadScene(1);
         }
     }
 }

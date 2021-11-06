@@ -51,16 +51,24 @@ namespace RH.Game.Spells
         private void InitSpells(SpellsCollection.CastType castType)
         {
             var spells = new SpellsCollection(castType);
-            
-            spells.AddSpell(
-                SpellType.Projectile, 
-                new ProjectileSpell(new BaseSpell.EnoughDragCondition(GameSettings.Instance.ProjectileInputLenght), 
-                new BaseSpell.EmptyBehavior()));
+
+            InitProjectileSpell(spells, castType);
 
             spells.AddSpell(
-                SpellType.Shield, 
-                new ShieldSpell(new BaseSpell.EnoughDragCondition(GameSettings.Instance.ShieldInputLenght), 
+                SpellType.Shield,
+                new ShieldSpell(new BaseSpell.EnoughDragCondition(GameSettings.Instance.ShieldInputLenght),
                 new BaseSpell.EmptyBehavior()));
+        }
+
+        private static void InitProjectileSpell(SpellsCollection spells, SpellsCollection.CastType castType)
+        {
+            BaseSpell.CastCondition condition = castType == SpellsCollection.CastType.CastIfCan ? 
+                new BaseSpell.IsTouchCondition() : 
+                new BaseSpell.EnoughDragCondition(GameSettings.Instance.ProjectileInputLenght);
+
+            spells.AddSpell(
+                            SpellType.Projectile,
+                            new ProjectileSpell(condition, new BaseSpell.EmptyBehavior()));
         }
 
         private void CastSpell(List<Vector3> points)
