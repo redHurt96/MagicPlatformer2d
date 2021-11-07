@@ -26,6 +26,7 @@ namespace RH.Game.Settings
         [Header("Fireball spell")] 
         public Projectile.ProjectileData ProjectileData;
         public float ProjectileInputLenght;
+        public float ProjectileCastDistanceFromPlayer;
 
         [Header("Shield spell")] 
         public float ShieldLifeTime;
