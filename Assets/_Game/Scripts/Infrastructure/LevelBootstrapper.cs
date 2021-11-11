@@ -13,7 +13,7 @@ namespace RH.Game.Infrastructure
 
         private void Awake()
         {
-            _level = new Level(_settings, _canvas, _player);
+            _level = new Level(_settings, _player);
             FpsIncreaser.Perform();
             CreateMoveUi();
         }

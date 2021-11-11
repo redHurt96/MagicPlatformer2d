@@ -2,7 +2,7 @@
 
 namespace RH.Game.Spells
 {
-    public abstract partial class BaseSpell
+    public partial class Spell
     {
         public abstract class CompleteBehavior
         {

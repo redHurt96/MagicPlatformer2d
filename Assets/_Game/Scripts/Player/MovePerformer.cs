@@ -25,7 +25,7 @@ namespace RH.Game.Player
         {
             if (!_groundDetector.IsGrounded)
                 return;
-            
+
             Move();
         }
 

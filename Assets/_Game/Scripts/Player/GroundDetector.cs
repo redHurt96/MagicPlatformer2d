@@ -1,24 +1,29 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RH.Game.Player
 {
     public class GroundDetector : MonoBehaviour
     {
-        public bool IsGrounded { get; private set; }
+        public bool IsGrounded => _groundColliders.Count > 0;
 
-        [SerializeField] private Transform _rayAnchor;
-        [SerializeField] private float _distance;
+        [SerializeField] private Transform _anchor;
 
-        private void Update()
+        private List<Collider2D> _groundColliders = new List<Collider2D>();
+
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            RaycastHit2D hit = Physics2D.Raycast(_rayAnchor.position, Vector2.down, _distance);
-            IsGrounded = hit.collider != null;
+            if (IsValidCollision(other))
+                _groundColliders.Add(other.collider);
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnCollisionExit2D(Collision2D other)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(_rayAnchor.position, _rayAnchor.position + Vector3.down * _distance);
+            if (IsValidCollision(other))
+                _groundColliders.Remove(other.collider);
         }
+
+        private bool IsValidCollision(Collision2D other) =>
+            !other.collider.isTrigger && other.transform.position.y < _anchor.position.y;
     }
 }

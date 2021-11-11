@@ -25,6 +25,9 @@ namespace RH.Game.Projectiles
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.isTrigger)
+                return;
+
             if (other.TryGetComponent<IDamagable>(out var damagable))
                 damagable.ApplyDamage(_data.Damage);
 

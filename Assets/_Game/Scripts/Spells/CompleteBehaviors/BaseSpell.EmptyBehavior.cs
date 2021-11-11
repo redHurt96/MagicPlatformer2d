@@ -1,6 +1,6 @@
 ﻿namespace RH.Game.Spells
 {
-    public abstract partial class BaseSpell
+    public partial class Spell
     {
         public class EmptyBehavior : CompleteBehavior
         {

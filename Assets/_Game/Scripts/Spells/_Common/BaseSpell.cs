@@ -3,15 +3,17 @@ using UnityEngine;
 
 namespace RH.Game.Spells
 {
-    public abstract partial class BaseSpell
+    public partial class Spell
     {
-        protected readonly CastCondition castCondition;
-        protected readonly CompleteBehavior completeBehavior;
+        protected readonly CastCondition _castCondition;
+        protected readonly CastBehavior _castBehavior;
+        protected readonly CompleteBehavior _completeBehavior;
 
-        public BaseSpell(CastCondition condition, CompleteBehavior behavior)
+        public Spell(CastCondition castCondition, CastBehavior castBehavior, CompleteBehavior completeBehavior)
         {
-            castCondition = condition;
-            completeBehavior = behavior;
+            _castCondition = castCondition;
+            _castBehavior = castBehavior;
+            _completeBehavior = completeBehavior;
         }
 
         public bool TryCast(List<Vector3> points)
@@ -19,14 +21,12 @@ namespace RH.Game.Spells
             if (!CanCast(points))
                 return false;
             
-            Cast(points);
-            completeBehavior.Apply();
+            _castBehavior.Cast(points);
+            _completeBehavior.Apply();
 
             return true;
         }
 
-        protected abstract void Cast(List<Vector3> points);
-        
-        private bool CanCast(List<Vector3> points) => castCondition.CanCast(points) && completeBehavior.IsComplete;
+        private bool CanCast(List<Vector3> points) => _castCondition.CanCast(points) && _completeBehavior.IsComplete;
     }
 }

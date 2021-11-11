@@ -5,9 +5,9 @@ namespace RH.Game.Spells
 {
     public partial class Spell
     {
-        public abstract class CastCondition
+        public abstract class CastBehavior
         {
-            public abstract bool CanCast(List<Vector3> points);
+            public abstract void Cast(List<Vector3> points);
         }
     }
 }

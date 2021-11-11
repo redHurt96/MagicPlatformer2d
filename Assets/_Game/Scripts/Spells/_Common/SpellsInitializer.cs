@@ -1,28 +1,49 @@
+using RH.Utilities.SingletonAccess;
 using System.Collections.Generic;
 using UnityEngine;
-using RH.Game.Settings;
 
 namespace RH.Game.Spells
 {
-    public class SpellsInitializer
+    public class SpellsInitializer : Singleton<SpellsInitializer>
     {
         private InputTracker _inputTracker;
-        private SpellsBarCreator _spellsBarCreator;
-        
-        public void Init(Transform canvas)
-        {
-            SpellsCollection.CastType castType = GameSettings.Instance.CastType;
+        private CastType _castType;
+        private SpellsCollection _spellsCollection;
 
-            InitSpells(castType);
+        public void Init(CastType castType)
+        {
+            _castType = castType;
+
+            SetSpells();
             InitTracker();
-            TryCreateBar(castType, canvas);
         }
 
-        public void Dispose()
+        public void ChangeCastType()
+        {
+            _castType = _castType == CastType.ProjectileByDraw ? CastType.ProjectileByTap : CastType.ProjectileByDraw;
+            SetSpells();
+        }
+
+        protected override void PrepareToDestroy()
         {
             DisposeTracker();
-            SpellsCollection.DestroyInstance();
-            _spellsBarCreator?.Dispose();
+            _spellsCollection = null;
+        }
+        
+        private void SetSpells()
+        {
+            _spellsCollection = new SpellsCollection();
+
+            switch (_castType)
+            {
+                case CastType.ProjectileByDraw:
+                    _spellsCollection.AddSpell(SpellType.Projectile, SpellBuilder.ProjectileDrawSpell());
+                    break;
+                case CastType.ProjectileByTap:
+                    _spellsCollection.AddSpell(SpellType.Projectile, SpellBuilder.ProjectileTapSpell());
+                    _spellsCollection.AddSpell(SpellType.Shield, SpellBuilder.ShieldSpell());
+                    break;
+            }
         }
 
         private void InitTracker()
@@ -32,15 +53,6 @@ namespace RH.Game.Spells
             _inputTracker.DrawComplete += CastSpell;
         }
 
-        private void TryCreateBar(SpellsCollection.CastType castType, Transform canvas)
-        {
-            if (castType != SpellsCollection.CastType.SpellsBar)
-                return;
-
-            _spellsBarCreator = new SpellsBarCreator(canvas);
-            _spellsBarCreator.Execute();
-        }
-
         private void DisposeTracker()
         {
             _inputTracker.DrawComplete -= CastSpell;
@@ -48,32 +60,7 @@ namespace RH.Game.Spells
             _inputTracker = null;
         }
 
-        private void InitSpells(SpellsCollection.CastType castType)
-        {
-            var spells = new SpellsCollection(castType);
-
-            InitProjectileSpell(spells, castType);
-
-            spells.AddSpell(
-                SpellType.Shield,
-                new ShieldSpell(new BaseSpell.EnoughDragCondition(GameSettings.Instance.ShieldInputLenght),
-                new BaseSpell.EmptyBehavior()));
-        }
-
-        private static void InitProjectileSpell(SpellsCollection spells, SpellsCollection.CastType castType)
-        {
-            BaseSpell.CastCondition condition = castType == SpellsCollection.CastType.CastIfCan ? 
-                new BaseSpell.IsTouchCondition() : 
-                new BaseSpell.EnoughDragCondition(GameSettings.Instance.ProjectileInputLenght);
-
-            spells.AddSpell(
-                            SpellType.Projectile,
-                            new ProjectileSpell(condition, new BaseSpell.EmptyBehavior()));
-        }
-
-        private void CastSpell(List<Vector3> points)
-        {
-            SpellsCollection.Instance.CastSpell(points);
-        }
+        private void CastSpell(List<Vector3> points) => 
+            _spellsCollection?.CastSpell(points);
     }
 }

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3325673950792001975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.036, z: 0}
+  m_LocalPosition: {x: 0, y: -0.751, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,15 +42,16 @@ GameObject:
   - component: {fileID: 9101359769824934927}
   - component: {fileID: 9101359769824934926}
   - component: {fileID: 9101359769824934925}
+  - component: {fileID: 6718088097374118677}
   - component: {fileID: 9101359769824934913}
   - component: {fileID: 9101359769824934915}
   - component: {fileID: 9101359769824934912}
   - component: {fileID: 4517838740548690941}
   - component: {fileID: 3197156862577081343}
-  - component: {fileID: 6718088097374118677}
+  - component: {fileID: 1083549540}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,6 +145,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &6718088097374118677
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101359769824934921}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!114 &9101359769824934913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a7b5f7085ddd94589f3233880c9a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundedAnchor: {fileID: 6001370507130561366}
 --- !u!114 &9101359769824934915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,21 +221,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f0a634f9d7adc4d98ab35342726a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rayAnchor: {fileID: 6001370507130561366}
-  _distance: 0.1
---- !u!70 &6718088097374118677
-CapsuleCollider2D:
+  _anchor: {fileID: 6001370507130561366}
+--- !u!114 &1083549540
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101359769824934921}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60a2f84aaf4b03429d3d6682a25b51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

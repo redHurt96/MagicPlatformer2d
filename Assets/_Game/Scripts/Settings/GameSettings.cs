@@ -21,7 +21,7 @@ namespace RH.Game.Settings
         public JumpMovementType JumpMovementType;
 
         [Header("Spells")]
-        public SpellsCollection.CastType CastType;
+        public CastType DefaultCastType;
 
         [Header("Fireball spell")] 
         public Projectile.ProjectileData ProjectileData;

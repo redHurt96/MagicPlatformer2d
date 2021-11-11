@@ -9,18 +9,20 @@ namespace RH.Game.Player
 
         private readonly List<Collider2D> _otherColliders = new List<Collider2D>();
 
-        [SerializeField] private Transform _groundedAnchor;
-
         private void OnCollisionEnter2D(Collision2D other)
         {
+            if (other.collider.isTrigger)
+                return;
+
             _otherColliders.Add(other.collider);
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
-            Collider2D collider = other.collider;
+            if (other.collider.isTrigger)
+                return;
 
-            _otherColliders.Remove(collider);
+            _otherColliders.Remove(other.collider);
         }
     }
 }

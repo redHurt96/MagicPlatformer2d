@@ -1,66 +1,28 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using RH.Utilities.SingletonAccess;
 
 namespace RH.Game.Spells
 {
-    public class SpellsCollection : Singleton<SpellsCollection>
+    public class SpellsCollection
     {
-        public SpellType CurrentSpellType { get; private set; }
+        private List<Spell> _spells = new List<Spell>();
 
-        private Dictionary<SpellType, BaseSpell> _spells = new Dictionary<SpellType, BaseSpell>();
-
-        private readonly CastType _castType;
-
-        private BaseSpell _currentSpell => _spells[CurrentSpellType];
-
-        public SpellsCollection(CastType castType)
+        public void AddSpell(SpellType type, Spell spell)
         {
-            _castType = castType;
-        }
-
-        public void AddSpell(SpellType type, BaseSpell spell)
-        {
-            if (_spells.ContainsKey(type))
+            if (_spells.Contains(spell))
                 throw new ArgumentException($"Spell with type {type} already added to dictionary");
-            
-            _spells.Add(type, spell);
+
+            _spells.Add(spell);
         }
         
-        public void SelectSpell(SpellType type)
-        {
-            CurrentSpellType = type;
-        }
-
         public void CastSpell(List<Vector3> drawPoints)
         {
-            switch (_castType)
+            foreach (Spell spell in _spells)
             {
-                case CastType.SpellsBar:
-                    _currentSpell.TryCast(drawPoints);
-                    break;
-                case CastType.CastIfCan:
-                    CastIfCan(drawPoints);
-                    break;
-                default:
+                if (spell.TryCast(drawPoints))
                     break;
             }
-        }
-
-        private void CastIfCan(List<Vector3> drawPoints)
-        {
-            foreach (KeyValuePair<SpellType, BaseSpell> pair in _spells)
-            {
-                if (pair.Value.TryCast(drawPoints))
-                    break;
-            }
-        }
-
-        public enum CastType
-        {
-            SpellsBar = 0,
-            CastIfCan
         }
     }
 }
