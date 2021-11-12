@@ -34,12 +34,17 @@ namespace RH.Game.Settings
         public float ShieldsLenght;
         public float ShieldInputLenght;
 
+        [Header("Sword hit")]
+        public float SwordHitTime;
+
         [Header("Input UI")]
         public InputUiCreator.InputType MoveUiType;
 
         [Header("Dev stuff")]
         public bool EnableInputLog;
         public bool EnableJumpGizmos;
+        public float LineAngleTreshhold;
+
 
         public static GameSettings Instance { get; private set; }
 

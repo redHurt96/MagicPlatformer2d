@@ -2,6 +2,7 @@ namespace Between.Damage
 {
     public enum DamageType
     {
-        Projectile
+        Projectile,
+        Sword
     }
 }

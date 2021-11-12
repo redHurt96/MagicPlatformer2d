@@ -3,6 +3,7 @@
     public enum SpellType
     {
         Projectile = 0,
-        Shield
+        Shield,
+        Sword
     }
 }

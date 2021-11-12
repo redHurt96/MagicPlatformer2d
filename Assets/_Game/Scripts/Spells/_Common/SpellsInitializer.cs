@@ -43,6 +43,13 @@ namespace RH.Game.Spells
                     _spellsCollection.AddSpell(SpellType.Projectile, SpellBuilder.ProjectileTapSpell());
                     _spellsCollection.AddSpell(SpellType.Shield, SpellBuilder.ShieldSpell());
                     break;
+                case CastType.ProjectileShieldAndSword:
+                    _spellsCollection.AddSpell(SpellType.Projectile, SpellBuilder.ProjectileArrowSpell());
+                    _spellsCollection.AddSpell(SpellType.Shield, SpellBuilder.ShieldByLine());
+                    _spellsCollection.AddSpell(SpellType.Sword, SpellBuilder.SwordHit());
+                    break;
+                default:
+                    break;
             }
         }
 

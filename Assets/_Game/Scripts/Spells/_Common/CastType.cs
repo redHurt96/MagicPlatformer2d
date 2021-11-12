@@ -3,6 +3,7 @@
     public enum CastType
     {
         ProjectileByTap = 0,
-        ProjectileByDraw
+        ProjectileByDraw,
+        ProjectileShieldAndSword
     }
 }

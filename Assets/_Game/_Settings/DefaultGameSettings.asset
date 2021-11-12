@@ -51,7 +51,7 @@ MonoBehaviour:
   FallAirControlPercent: 1
   JumpTime: 1
   JumpMovementType: 1
-  CastType: 1
+  DefaultCastType: 2
   ProjectileData:
     Speed: 25
     Damage:
@@ -64,6 +64,8 @@ MonoBehaviour:
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
   ShieldsLenght: 5
   ShieldInputLenght: 2
+  SwordHitTime: 0.5
   MoveUiType: 2
   EnableInputLog: 0
   EnableJumpGizmos: 0
+  LineAngleTreshhold: 15
