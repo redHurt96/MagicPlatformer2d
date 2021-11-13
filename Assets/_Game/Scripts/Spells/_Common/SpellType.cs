@@ -4,6 +4,7 @@
     {
         Projectile = 0,
         Shield,
-        Sword
+        Sword,
+        Push
     }
 }

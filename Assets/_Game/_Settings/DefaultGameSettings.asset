@@ -52,7 +52,7 @@ MonoBehaviour:
   JumpTime: 1
   JumpMovementType: 1
   JoystickJumpAngle: 30
-  DefaultCastType: 2
+  DefaultCastType: 3
   ProjectileData:
     Speed: 25
     Damage:
@@ -66,6 +66,8 @@ MonoBehaviour:
   ShieldsLenght: 5
   ShieldInputLenght: 2
   SwordHitTime: 0.5
+  PushAreaSize: {x: 5, y: 5}
+  PushForce: 500
   MoveUiType: 3
   EnableInputLog: 0
   EnableJumpGizmos: 0

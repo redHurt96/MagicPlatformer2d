@@ -5,24 +5,27 @@ using RH.Game.Input;
 
 namespace RH.Game.Player
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(GroundDetector))]
     public class MovePerformer : MonoBehaviour
     {
         private Rigidbody2D _rigidbody;
-        private GroundDetector _groundDetector;
+        private GroundDetectorByRay _groundDetector;
 
         private float _speed => GameSettings.Instance.MoveSpeed;
+
+        public bool CanMove; //for inspector
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _groundDetector = GetComponent<GroundDetector>();
+            _groundDetector = GetComponent<GroundDetectorByRay>();
         }
 
         private void Update() => TryMove();
 
         private void TryMove()
         {
+            CanMove = _groundDetector.IsGrounded; //for inspector
+
             if (!_groundDetector.IsGrounded)
                 return;
 

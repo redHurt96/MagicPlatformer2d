@@ -4,6 +4,7 @@
     {
         ProjectileByTap = 0,
         ProjectileByDraw,
-        ProjectileShieldAndSword
+        ProjectileShieldAndSword,
+        ShieldPushAndFireball
     }
 }

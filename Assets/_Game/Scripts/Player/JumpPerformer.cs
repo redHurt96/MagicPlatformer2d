@@ -9,7 +9,7 @@ namespace RH.Game.Player
     public class JumpPerformer : MonoBehaviour
     {
         private Rigidbody2D _rigidbody;
-        private GroundDetector _groundDetector;
+        private GroundDetectorByRay _groundDetector;
 
         public bool IsJumping { get; private set; }
 
@@ -31,12 +31,19 @@ namespace RH.Game.Player
 
         private bool _hasJump => _jumpCoroutine != null;
 
+        public bool HasJump; //for inspector
+
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _groundDetector = GetComponent<GroundDetector>();
+            _groundDetector = GetComponent<GroundDetectorByRay>();
 
             MovementInputService.OnJump += TryJump;
+        }
+
+        private void Update() //for inspector
+        {
+            HasJump = _hasJump;
         }
 
         private void OnDestroy()

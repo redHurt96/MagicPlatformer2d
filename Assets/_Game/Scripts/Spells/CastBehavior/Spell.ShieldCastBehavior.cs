@@ -7,11 +7,11 @@ namespace RH.Game.Spells
 {
     public partial class Spell
     {
-        public class ShieldCastBehavior : CastBehavior
+        public class Shield : CastBehavior
         {
             private ShieldSpawner _spawner;
-            
-            public ShieldCastBehavior()
+
+            public Shield()
             {
                 _spawner = new ShieldSpawner(GameSettings.Instance.ShieldPrefab);
             }

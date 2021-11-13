@@ -38,14 +38,18 @@ namespace RH.Game.Settings
         [Header("Sword hit")]
         public float SwordHitTime;
 
+        [Header("Push spell")]
+        public Vector2 PushAreaSize;
+        public float PushForce;
+
         [Header("Input UI")]
         public InputUiCreator.InputType MoveUiType;
 
         [Header("Dev stuff")]
-        public bool EnableInputLog;
-        public bool EnableJumpGizmos;
+        public bool InputLogEnabled;
+        public bool JumpGizmosEnabled;
+        public bool PushPerformerLogsEnabled;
         public float LineAngleTreshhold;
-
 
         public static GameSettings Instance { get; private set; }
 

@@ -37,20 +37,27 @@ namespace RH.Game.Spells
             switch (_castType)
             {
                 case CastType.ProjectileByDraw:
-                    _spellsCollection.AddSpell(SpellType.Projectile, SpellBuilder.ProjectileDrawSpell());
+                    AddSpell(SpellType.Projectile, SpellBuilder.ProjectileDrawSpell());
                     break;
                 case CastType.ProjectileByTap:
-                    _spellsCollection.AddSpell(SpellType.Projectile, SpellBuilder.ProjectileTapSpell());
-                    _spellsCollection.AddSpell(SpellType.Shield, SpellBuilder.ShieldSpell());
+                    AddSpell(SpellType.Projectile, SpellBuilder.ProjectileTapSpell());
+                    AddSpell(SpellType.Shield, SpellBuilder.ShieldSpell());
                     break;
                 case CastType.ProjectileShieldAndSword:
-                    _spellsCollection.AddSpell(SpellType.Projectile, SpellBuilder.ProjectileArrowSpell());
-                    _spellsCollection.AddSpell(SpellType.Shield, SpellBuilder.ShieldByLine());
-                    _spellsCollection.AddSpell(SpellType.Sword, SpellBuilder.SwordHit());
+                    AddSpell(SpellType.Projectile, SpellBuilder.ProjectileArrowSpell());
+                    AddSpell(SpellType.Shield, SpellBuilder.ShieldByLine());
+                    AddSpell(SpellType.Sword, SpellBuilder.SwordHit());
+                    break;
+                case CastType.ShieldPushAndFireball:
+                    AddSpell(SpellType.Projectile, SpellBuilder.ProjectileTapSpell());
+                    AddSpell(SpellType.Push, SpellBuilder.Push());
+                    AddSpell(SpellType.Shield, SpellBuilder.ShieldByLine());
                     break;
                 default:
                     break;
             }
+
+            void AddSpell(SpellType type, Spell spell) => _spellsCollection.AddSpell(type, spell);
         }
 
         private void InitTracker()

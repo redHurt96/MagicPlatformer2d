@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace RH.Game.Player
 {
-    [RequireComponent(typeof(CollisionDetector), typeof(JumpPerformer), typeof(Rigidbody2D))]
     public class FallPerformer : MonoBehaviour
     {
-        private CollisionDetector _collisionDetector;
+        private GroundDetectorByRay _groundDetector;
         private JumpPerformer _jumpPerformer;
         private Rigidbody2D _rigidbody;
 
@@ -15,16 +14,20 @@ namespace RH.Game.Player
         private float _fallAirControl => GameSettings.Instance.FallAirControlPercent;
         private float _moveDirection => MovementInputService.MoveDirection.x;
 
+        public bool IsFall; //for inspector
+
         private void Start()
         {
-            _collisionDetector = GetComponent<CollisionDetector>();
+            _groundDetector = GetComponent<GroundDetectorByRay>();
             _jumpPerformer = GetComponent<JumpPerformer>();
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
-            if (!_collisionDetector.IsCollide && !_jumpPerformer.IsJumping)
+            IsFall = !_groundDetector.IsGrounded && !_jumpPerformer.IsJumping; //for inspector
+
+            if (!_groundDetector.IsGrounded && !_jumpPerformer.IsJumping)
                 Move();
         }
 
