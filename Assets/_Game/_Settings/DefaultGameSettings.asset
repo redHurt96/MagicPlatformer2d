@@ -51,6 +51,7 @@ MonoBehaviour:
   FallAirControlPercent: 1
   JumpTime: 1
   JumpMovementType: 1
+  JoystickJumpAngle: 30
   DefaultCastType: 2
   ProjectileData:
     Speed: 25
@@ -65,7 +66,7 @@ MonoBehaviour:
   ShieldsLenght: 5
   ShieldInputLenght: 2
   SwordHitTime: 0.5
-  MoveUiType: 2
+  MoveUiType: 3
   EnableInputLog: 0
   EnableJumpGizmos: 0
   LineAngleTreshhold: 15

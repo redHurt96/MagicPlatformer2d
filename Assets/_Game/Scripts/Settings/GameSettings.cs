@@ -19,6 +19,7 @@ namespace RH.Game.Settings
         [Range(0,1)] public float FallAirControlPercent;
         public float JumpTime;
         public JumpMovementType JumpMovementType;
+        public float JoystickJumpAngle;
 
         [Header("Spells")]
         public CastType DefaultCastType;

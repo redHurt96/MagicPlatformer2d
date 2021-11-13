@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using RH.Game.Infrastructure;
 using RH.Game.Settings;
 using RH.Utilities.UI;

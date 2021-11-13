@@ -121,10 +121,12 @@ namespace RH.Game.Player
 
             return _speed * Time.fixedDeltaTime * inputCoefficient;
 
-            bool NeedChangeDirection() => GameSettings.Instance.JumpMovementType == JumpMovementType.FollowZeroDirection || IsMoveInAir();
-            bool IsMoveInAir() => (Mathf.Sign(_moveDirection) != Mathf.Sign(startDirection) && !Mathf.Approximately(_moveDirection, 0f)) 
-                || Mathf.Approximately(startDirection, 0f) && _moveDirection > 0f;
+            bool NeedChangeDirection() => GameSettings.Instance.JumpMovementType == JumpMovementType.FollowZeroDirection || HasMoveInAir(startDirection);
         }
+
+        private bool HasMoveInAir(float startDirection) =>
+            (Mathf.Sign(_moveDirection) != Mathf.Sign(startDirection) && !Mathf.Approximately(_moveDirection, 0f))
+                        || Mathf.Approximately(startDirection, 0f) && _moveDirection != 0f;
 
         private float CalculateVerticalOffset(float startPointY)
         {

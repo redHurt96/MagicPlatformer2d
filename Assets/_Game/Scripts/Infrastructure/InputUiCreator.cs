@@ -12,7 +12,8 @@ namespace RH.Game.Infrastructure
         {
             { InputType.Buttons, "MoveButtons(default)" },
             { InputType.JoystickAndButton, "MoveJoystickWithJumpButton" },
-            { InputType.Joystick, "MoveJumpJoystick" }
+            { InputType.Joystick, "MoveJumpJoystick" },
+            { InputType.SimpleInputJoystick, "SimpleInputJoystick" }
         };
 
         public InputUiCreator(Transform uiParent)
@@ -20,15 +21,18 @@ namespace RH.Game.Infrastructure
             _uiParent = uiParent;
         }
 
-        public void Execute(InputType type) => Object.Instantiate(Resources.Load(GetFullName(type)), _uiParent);
+        public void Execute(InputType type) => 
+            Object.Instantiate(Resources.Load(GetFullName(type)), _uiParent);
 
-        private string GetFullName(InputType type) => Path.Combine("UI", _uiModules[type]);
+        private string GetFullName(InputType type) => 
+            Path.Combine("UI", _uiModules[type]);
 
         public enum InputType
         {
             Buttons = 0,
             JoystickAndButton,
-            Joystick
+            Joystick,
+            SimpleInputJoystick
         }
     }
 }

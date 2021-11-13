@@ -1136,6 +1136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordSpell
       objectReference: {fileID: 0}
+    - target: {fileID: 6718150471690040507, guid: 20c342d1b29252246bd7e6cf21068da5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20c342d1b29252246bd7e6cf21068da5, type: 3}
 --- !u!4 &745347724 stripped
