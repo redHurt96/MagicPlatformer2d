@@ -1,5 +1,6 @@
 using RH.Game.Input;
 using RH.Game.Settings;
+using RH.Utilities.Attributes;
 using UnityEngine;
 
 namespace RH.Game.Player
@@ -14,7 +15,7 @@ namespace RH.Game.Player
         private float _fallAirControl => GameSettings.Instance.FallAirControlPercent;
         private float _moveDirection => MovementInputService.MoveDirection.x;
 
-        public bool IsFall; //for inspector
+        [SerializeField, ReadOnly] private bool _isFall; //for inspector
 
         private void Start()
         {
@@ -25,7 +26,7 @@ namespace RH.Game.Player
 
         private void Update()
         {
-            IsFall = !_groundDetector.IsGrounded && !_jumpPerformer.IsJumping; //for inspector
+            _isFall = !_groundDetector.IsGrounded && !_jumpPerformer.IsJumping; //for inspector
 
             if (!_groundDetector.IsGrounded && !_jumpPerformer.IsJumping)
                 Move();

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using RH.Game.Settings;
 using RH.Game.Input;
+using RH.Utilities.Attributes;
 
 namespace RH.Game.Player
 {
@@ -31,7 +32,7 @@ namespace RH.Game.Player
 
         private bool _hasJump => _jumpCoroutine != null;
 
-        public bool HasJump; //for inspector
+        [SerializeField, ReadOnly] private bool _hasJumpInspector;
 
         private void Start()
         {
@@ -43,7 +44,7 @@ namespace RH.Game.Player
 
         private void Update() //for inspector
         {
-            HasJump = _hasJump;
+            _hasJumpInspector = _hasJump;
         }
 
         private void OnDestroy()

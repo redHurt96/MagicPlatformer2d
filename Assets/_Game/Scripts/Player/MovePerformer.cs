@@ -2,6 +2,7 @@
 using RH.Game.Settings;
 using RH.Utilities.Extensions;
 using RH.Game.Input;
+using RH.Utilities.Attributes;
 
 namespace RH.Game.Player
 {
@@ -12,7 +13,7 @@ namespace RH.Game.Player
 
         private float _speed => GameSettings.Instance.MoveSpeed;
 
-        public bool CanMove; //for inspector
+        [SerializeField, ReadOnly] private bool CanMove; //for inspector
 
         private void Start()
         {
