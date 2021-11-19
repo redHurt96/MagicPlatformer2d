@@ -72,7 +72,7 @@ MonoBehaviour:
   UseManaToDraw: 1
   ManaCostPerUnit: 5
   ManaMaxValue: 100
-  ManaRecoveryPerSecond: 1
+  ManaRecoveryPerSecond: 20
   InputLogEnabled: 0
   JumpGizmosEnabled: 0
   PushPerformerLogsEnabled: 0
