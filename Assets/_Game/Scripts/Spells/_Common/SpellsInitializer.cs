@@ -1,3 +1,4 @@
+using RH.Game.Settings;
 using RH.Utilities.SingletonAccess;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace RH.Game.Spells
 {
     public class SpellsInitializer : Singleton<SpellsInitializer>
     {
-        private InputTracker _inputTracker;
+        private IInputTracker _inputTracker;
         private CastType _castType;
         private SpellsCollection _spellsCollection;
 
@@ -62,7 +63,7 @@ namespace RH.Game.Spells
 
         private void InitTracker()
         {
-            _inputTracker = new InputTracker();
+            _inputTracker = GameSettings.Instance.UseManaToDraw ? new ManaBasedInputTracker() : new InputTracker();
             _inputTracker.Init();
             _inputTracker.DrawComplete += CastSpell;
         }

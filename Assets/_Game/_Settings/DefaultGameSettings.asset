@@ -69,6 +69,11 @@ MonoBehaviour:
   PushAreaSize: {x: 5, y: 5}
   PushForce: 500
   MoveUiType: 3
-  EnableInputLog: 0
-  EnableJumpGizmos: 0
+  UseManaToDraw: 1
+  ManaCostPerUnit: 5
+  ManaMaxValue: 100
+  ManaRecoveryPerSecond: 1
+  InputLogEnabled: 0
+  JumpGizmosEnabled: 0
+  PushPerformerLogsEnabled: 0
   LineAngleTreshhold: 15

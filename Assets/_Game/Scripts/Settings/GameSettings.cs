@@ -45,6 +45,12 @@ namespace RH.Game.Settings
         [Header("Input UI")]
         public InputUiCreator.InputType MoveUiType;
 
+        [Header("Mana")]
+        public bool UseManaToDraw;
+        public float ManaCostPerUnit;
+        public float ManaMaxValue;
+        public float ManaRecoveryPerSecond;
+
         [Header("Dev stuff")]
         public bool InputLogEnabled;
         public bool JumpGizmosEnabled;

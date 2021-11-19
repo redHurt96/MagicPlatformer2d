@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using RH.Game.Settings;
 using RH.Game.Spells;
+using RH.Game.ManaManagement;
 
 namespace RH.Game.Infrastructure
 {
@@ -12,6 +13,7 @@ namespace RH.Game.Infrastructure
         {
             settings.Init();
 
+            new Mana(GameSettings.Instance.ManaMaxValue);
             new SpellsInitializer();
             SpellsInitializer.Instance.Init(settings.DefaultCastType);
 
@@ -21,6 +23,7 @@ namespace RH.Game.Infrastructure
         public void Dispose()
         {
             SpellsInitializer.DestroyInstance();
+            Mana.DestroyInstance();
         }
     }
 }
