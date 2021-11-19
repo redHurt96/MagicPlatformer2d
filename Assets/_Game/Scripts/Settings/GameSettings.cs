@@ -42,6 +42,8 @@ namespace RH.Game.Settings
         public Vector2 PushAreaSize;
         public float PushForce;
 
+        [Header("Death line")]
+
         [Header("Input UI")]
         public InputUiCreator.InputType MoveUiType;
 

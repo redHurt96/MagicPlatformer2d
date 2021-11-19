@@ -40,8 +40,11 @@ namespace RH.Game.ManaManagement
         public bool CanSpend(float manaCost) => 
             manaCost <= Value;
 
-        protected override void PrepareToDestroy() =>
-            CoroutineLauncher.Stop(Recovery());
+        protected override void PrepareToDestroy()
+        {
+            if (CoroutineLauncher.Exist)
+                CoroutineLauncher.Stop(Recovery());
+        }
 
         private IEnumerator Recovery()
         {

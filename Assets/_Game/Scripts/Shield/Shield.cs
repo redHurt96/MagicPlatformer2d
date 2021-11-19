@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using Between.Damage;
 using Between.Teams;
-using Between.Interfaces;
 using RH.Game.Settings;
 
 namespace Between.SpellsEffects.ShieldSpell

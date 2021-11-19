@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using Between.Damage;
+using System.Collections;
 using UnityEngine;
-using Between.Interfaces;
 
 namespace RH.Game.Projectiles
 {

@@ -5,6 +5,7 @@
         Projectile = 0,
         Shield,
         Sword,
-        Push
+        Push,
+        DeathLine
     }
 }

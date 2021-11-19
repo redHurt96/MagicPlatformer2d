@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Between.Damage;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RH.Game.Spells
@@ -9,5 +10,6 @@ namespace RH.Game.Spells
         {
             public override bool CanCast(List<Vector3> points) => points.Count == 2;
         }
+
     }
 }

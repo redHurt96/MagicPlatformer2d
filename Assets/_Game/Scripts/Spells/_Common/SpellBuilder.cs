@@ -31,5 +31,8 @@ namespace RH.Game.Spells
 
         public static Spell Push() =>
             new Spell(new DrawArrowCondition(), new Push(), new EmptyBehavior());
+
+        public static Spell DeathLine() =>
+            new Spell(new DrawOverEnemy(), new HitAllInDraw(), new EmptyBehavior());
     }
 }

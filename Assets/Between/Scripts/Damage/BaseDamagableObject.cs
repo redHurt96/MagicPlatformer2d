@@ -1,5 +1,4 @@
 using UnityEngine;
-using Between.Interfaces;
 using Between.Teams;
 
 namespace Between.Damage

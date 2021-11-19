@@ -1,11 +1,10 @@
 using Between.Damage;
-using Between.Teams;
+using RH.Game.Teams;
 
-namespace Between.Interfaces
+namespace Between.Damage
 {
-    public interface IDamagable
+    public interface IDamagable : ITeamMember
     {
-        Team Team { get; }
         void ApplyDamage(DamageItem damage);
     }
 }

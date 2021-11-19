@@ -9,10 +9,11 @@ namespace RH.Game.Spells
         protected readonly CastBehavior _castBehavior;
         protected readonly CompleteBehavior _completeBehavior;
 
+        public Spell(CastCondition castCondition, CastBehavior castBehavior) : 
+            this(castCondition, castBehavior, new EmptyBehavior()) { }
+
         public Spell(CastCondition castCondition, CastBehavior castBehavior, CompleteBehavior completeBehavior) : 
-            this(new List<CastCondition> { castCondition }, castBehavior, completeBehavior)
-        {
-        }
+            this(new List<CastCondition> { castCondition }, castBehavior, completeBehavior) { }
 
         public Spell(List<CastCondition> castConditions, CastBehavior castBehavior, CompleteBehavior completeBehavior)
         {

@@ -5,6 +5,8 @@
         ProjectileByTap = 0,
         ProjectileByDraw,
         ProjectileShieldAndSword,
-        ShieldPushAndFireball
+        ShieldPushAndFireball,
+        WithSeparateDeathLine,
+        WithDeathLineWithWall
     }
 }

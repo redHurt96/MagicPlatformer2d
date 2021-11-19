@@ -52,7 +52,7 @@ MonoBehaviour:
   JumpTime: 1
   JumpMovementType: 1
   JoystickJumpAngle: 30
-  DefaultCastType: 3
+  DefaultCastType: 4
   ProjectileData:
     Speed: 25
     Damage:
