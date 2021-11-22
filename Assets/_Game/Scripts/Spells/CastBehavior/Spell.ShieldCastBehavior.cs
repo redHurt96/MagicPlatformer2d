@@ -11,9 +11,10 @@ namespace RH.Game.Spells
         {
             private ShieldSpawner _spawner;
 
-            public Shield()
+            public Shield(bool isTransparent = false)
             {
-                _spawner = new ShieldSpawner(GameSettings.Instance.ShieldPrefab);
+                var prefab = isTransparent ? GameSettings.Instance.TransparentShieldPrefab : GameSettings.Instance.ShieldPrefab;
+                _spawner = new ShieldSpawner(prefab);
             }
 
             public override void Cast(List<Vector3> points)

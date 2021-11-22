@@ -23,7 +23,7 @@ namespace RH.Game.Input
                 MovementInputService.Jump(this);
         }
 
-        private bool CanJump() => GetTangent(Axis) > _jumpAngleTan && Axis.y > 0;
+        private bool CanJump() => GetTangent(Axis) > _jumpAngleTan && Axis.y > 0 && Axis.magnitude > .5f;
         private float GetTangent(Vector2 offset) => offset.y / Mathf.Abs(offset.x);
     }
 }

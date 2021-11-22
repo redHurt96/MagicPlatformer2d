@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 876062827461669305}
   - component: {fileID: 2901089947772298139}
   m_Layer: 0
-  m_Name: Shield
+  m_Name: TransparentShield
   m_TagString: MagicWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

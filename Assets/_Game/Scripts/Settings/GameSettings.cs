@@ -32,6 +32,7 @@ namespace RH.Game.Settings
         [Header("Shield spell")] 
         public float ShieldLifeTime;
         [AssetsOnly] public Shield ShieldPrefab;
+        [AssetsOnly] public Shield TransparentShieldPrefab;
         public float ShieldsLenght;
         public float ShieldInputLenght;
 

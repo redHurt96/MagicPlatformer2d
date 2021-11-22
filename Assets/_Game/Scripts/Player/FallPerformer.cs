@@ -26,21 +26,22 @@ namespace RH.Game.Player
 
         private void Update()
         {
-            _isFall = !_groundDetector.IsGrounded && !_jumpPerformer.IsJumping; //for inspector
-
             if (!_groundDetector.IsGrounded && !_jumpPerformer.IsJumping)
-                Move();
+                Fall();
+
+            ShowInInspector();
         }
 
-        private void Move()
+        private void Fall()
         {
             float velocityX = CalculateVelocity();
             _rigidbody.velocity = new Vector2(velocityX, _rigidbody.velocity.y);
         }
 
-        private float CalculateVelocity()
-        {
-            return Mathf.Lerp(_rigidbody.velocity.x, _moveDirection * _speed, _fallAirControl);
-        }
+        private float CalculateVelocity() => 
+            Mathf.Lerp(_rigidbody.velocity.x, _moveDirection * _speed, _fallAirControl);
+
+        private void ShowInInspector() => 
+            _isFall = !(_groundDetector.IsGrounded || _jumpPerformer.IsJumping);
     }
 }

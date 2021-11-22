@@ -56,6 +56,12 @@ namespace RH.Game.Spells
                     break;
                 case CastType.WithSeparateDeathLine:
                     AddSpell(SpellType.Push, SpellBuilder.Push());
+                    AddSpell(SpellType.Shield, SpellBuilder.ShieldByLineInEmptySpace());
+                    AddSpell(SpellType.Projectile, SpellBuilder.DeathLine());
+                    break;
+                case CastType.WithDeathLineWithWall:
+                    AddSpell(SpellType.Push, SpellBuilder.Push());
+                    AddSpell(SpellType.Shield, SpellBuilder.TransparentShield());
                     AddSpell(SpellType.Projectile, SpellBuilder.DeathLine());
                     break;
                 default:

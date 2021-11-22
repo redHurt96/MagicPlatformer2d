@@ -19,10 +19,7 @@ namespace RH.Game.Spells
         public void CastSpell(List<Vector3> drawPoints)
         {
             foreach (Spell spell in _spells)
-            {
-                if (spell.TryCast(drawPoints))
-                    break;
-            }
+                spell.TryCast(drawPoints);
         }
     }
 }
