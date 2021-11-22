@@ -20,7 +20,8 @@ namespace RH.Game.UI
 
         private void OnDestroy()
         {
-            Mana.Instance.ValueChanged -= Refresh;
+            if (Mana.Instance != null)
+                Mana.Instance.ValueChanged -= Refresh;
         }
 
         private void Refresh() => 
