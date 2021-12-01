@@ -52,7 +52,7 @@ MonoBehaviour:
   JumpTime: 1
   JumpMovementType: 1
   JoystickJumpAngle: 30
-  DefaultCastType: 5
+  DefaultCastType: 4
   ProjectileData:
     Speed: 25
     Damage:
@@ -64,7 +64,7 @@ MonoBehaviour:
   ShieldLifeTime: 2
   ShieldPrefab: {fileID: 876062827461669305, guid: bd0d869820bfdc2409f4aa4f84e9d80b, type: 3}
   TransparentShieldPrefab: {fileID: 876062827461669305, guid: f2d3761fd5a8c864b9ea009b654e699d, type: 3}
-  ShieldsLenght: 5
+  ShieldsLenght: 36.8
   ShieldInputLenght: 2
   SwordHitTime: 0.5
   PushAreaSize: {x: 5, y: 5}
